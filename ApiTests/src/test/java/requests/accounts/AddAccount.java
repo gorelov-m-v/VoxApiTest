@@ -11,6 +11,7 @@ public class AddAccount {
 
     public Response addAccount(User user) {
         Response response = given()
+                .relaxedHTTPSValidation()
                 .header("Content-type", "application/json")
                 .queryParam("account_name", user.getAccountName())
                 .queryParam("account_password", user.getAccount_password())
@@ -22,7 +23,7 @@ public class AddAccount {
                 .queryParam("init_balance", user.getInitBalance())
                 .queryParam("is_trial", user.is_trial())
                 .when()
-                .get("/AddAccount")
+                .get(paths.addAccount)
                 .then()
                 .extract()
                 .response();
