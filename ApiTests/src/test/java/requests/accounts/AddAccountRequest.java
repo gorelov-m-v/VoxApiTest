@@ -3,15 +3,16 @@ package requests.accounts;
 import constants.Paths;
 import io.restassured.response.Response;
 import model.User;
+import response.accounts.AddAccountResponse;
+
 import static io.restassured.RestAssured.given;
 
 
-public class AddAccount {
+public class AddAccountRequest {
     Paths paths = new Paths();
 
-    public Response addAccount(User user) {
-        Response response = given()
-                .relaxedHTTPSValidation()
+    public AddAccountResponse addAccount(User user) {
+        return given()
                 .header("Content-type", "application/json")
                 .queryParam("account_name", user.getAccountName())
                 .queryParam("account_password", user.getAccount_password())
@@ -26,8 +27,7 @@ public class AddAccount {
                 .get(paths.addAccount)
                 .then()
                 .extract()
-                .response();
-
-        return response;
+                .body()
+                .as(AddAccountResponse.class);
     }
 }
