@@ -8,9 +8,11 @@ import org.junit.Before;
 import org.junit.Test;
 import requests.accounts.AddAccountRequest;
 import response.accounts.AddAccountResponse;
+import utils.Generator;
 
 public class AddAccountTest {
     Paths paths = new Paths();
+    Generator generate = new Generator();
     AddAccountRequest request = new AddAccountRequest();
     AddAccountResponse response;
 
@@ -21,14 +23,13 @@ public class AddAccountTest {
 
     @Test
     public void AddAccountSmoke() {
-        User user = new User().withEmail("mailfortesffsdfftes123@testmail.ru").withName("firwesdfsggtuser")
-                              .withPassword("Aa123456!").withActive(true)
-                              .withCurrency("RUR").withInitBalance(1234)
-                              .withIsTrial(false).withApiKey("sasa")
-                              .withInitBalance(3000);
+        User user = new User().withEmail(generate.randomEmail()).withName(generate.randomAccountName())
+                              .withPassword(generate.password).withActive(true)
+                              .withCurrency(generate.CURRENCY[0]).withInitBalance(generate.randomValue(1000, 2000))
+                              .withIsTrial(false).withApiKey(generate.api_key);
+
 
         response = request.addAccount(user);
-        System.out.println(response.getAccount_id());
-        System.out.println(response.getError().getMsg());
+
     }
 }
