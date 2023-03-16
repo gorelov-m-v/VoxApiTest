@@ -17,7 +17,7 @@ public class AddAccountResponse {
     public int getResult() {
         return result;
     }
-    public int getAccount_id() {
+    public int account_id() {
         return account_id;
     }
     public String getApi_key() {

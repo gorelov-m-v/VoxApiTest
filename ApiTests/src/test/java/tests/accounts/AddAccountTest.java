@@ -3,7 +3,6 @@ package tests.accounts;
 import constants.Paths;
 import io.restassured.RestAssured;
 import model.User;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import requests.accounts.AddAccountRequest;
@@ -30,6 +29,7 @@ public class AddAccountTest {
 
 
         response = request.addAccount(user);
+        System.out.println(response.account_id());
 
     }
 }
