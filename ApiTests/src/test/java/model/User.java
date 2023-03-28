@@ -1,15 +1,19 @@
 package model;
 
+
 public class User {
 
     private String account_name;
     private String account_password;
+
     private String account_email;
+
     private String currency;
     private boolean active;
     private boolean is_trial ;
     private int init_balance;
     private String api_key;
+
 
     public String getAccountName() {
         return account_name;
@@ -35,6 +39,7 @@ public class User {
     public String getApiKey() {
         return api_key;
     }
+
 
     public User withName(String account_name) {
         this.account_name = account_name;
