@@ -1,4 +1,4 @@
-package Database.model.publicschema;
+package Database.model;
 
 
 import jakarta.persistence.Column;
@@ -23,4 +23,24 @@ public class Users {
     private boolean active;
     @Column(name = "api_key")
     private String api_key;
+
+    public int getId() {
+        return id;
+    }
+    public String username() {
+        return username;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public int getAccount_id() {
+        return account_id;
+    }
+    public boolean isActive() {
+        return active;
+    }
+    public String getApi_key() {
+        return api_key;
+    }
+
 }

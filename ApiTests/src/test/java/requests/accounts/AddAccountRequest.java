@@ -1,7 +1,6 @@
 package requests.accounts;
 
 import constants.Paths;
-import io.restassured.response.Response;
 import model.User;
 import response.accounts.AddAccountResponse;
 
@@ -14,7 +13,7 @@ public class AddAccountRequest {
     public AddAccountResponse addAccount(User user) {
         return given()
                 .header("Content-type", "application/json")
-                .queryParam("account_name", user.getAccountName())
+                .queryParam("account_name", user.accountName())
                 .queryParam("account_password", user.getAccount_password())
                 .queryParam("account_email", user.getAccount_email())
                 .queryParam("api_key", user.getApiKey())

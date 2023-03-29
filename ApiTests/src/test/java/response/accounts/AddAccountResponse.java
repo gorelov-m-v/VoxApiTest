@@ -14,19 +14,19 @@ public class AddAccountResponse {
     private Error error;
     private List<Errors> errors;
 
-    public int getResult() {
+    public int result() {
         return result;
     }
     public int account_id() {
         return account_id;
     }
-    public String getApi_key() {
+    public String api_key() {
         return api_key;
     }
-    public int getBilling_account_id() {
+    public int billing_account_id() {
         return billing_account_id;
     }
-    public boolean getActive() {
+    public boolean active() {
         return active;
     }
     public Error getError() {

@@ -15,7 +15,7 @@ public class User {
     private String api_key;
 
 
-    public String getAccountName() {
+    public String accountName() {
         return account_name;
     }
     public String getAccount_password() {

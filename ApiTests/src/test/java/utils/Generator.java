@@ -1,6 +1,5 @@
 package utils;
 
-import java.util.List;
 import java.util.Random;
 
 public class Generator {
@@ -28,9 +27,8 @@ public class Generator {
         return randomEmail.toLowerCase();
     }
 
-    public String randomAccountName() {
-        String prefix = "test-";
-        return prefix + randomString(20 - prefix.length());
+    public String randomAccountName(int length) {
+        return randomString(length);
     }
 
     public int randomValue(int min, int max) {

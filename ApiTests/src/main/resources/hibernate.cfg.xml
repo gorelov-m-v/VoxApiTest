@@ -22,7 +22,7 @@
         <property name="hibernate.hbm2ddl.auto">validate</property>
 
         <!-- Annotated entity classes -->
-        <mapping class=""/>
+        <mapping class="Database.model.Users"/>
 
     </session-factory>
 </hibernate-configuration>
