@@ -23,6 +23,8 @@ public class Users {
     private boolean active;
     @Column(name = "api_key")
     private String api_key;
+    @Column(name = "currency_id")
+    private String currency_id;
 
     public int getId() {
         return id;

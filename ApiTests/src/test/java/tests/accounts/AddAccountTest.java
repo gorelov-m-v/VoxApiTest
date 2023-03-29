@@ -43,7 +43,8 @@ public class AddAccountTest {
     @DataProvider(name = "accountNameLength")
     public static Object[][] passwordLength() {
 
-        return new Object[][]{{2},
+        return new Object[][]{{0},
+                              {2},
                               {4},
                               {5},
                               {6},
@@ -74,5 +75,24 @@ public class AddAccountTest {
             assertThat(response.getError().getMsg()).isEqualTo("Account name must be at least 5 and up to 20 characters long.");
             assertThat(response.getError().getField_name()).isEqualTo("account_name");
         }
+    }
+
+    @DataProvider(name = "currenciesSet")
+    public static Object[][] currenciesSet() {
+
+        return new Object[][]{{"USD"},
+                              {"RUR"},
+                              {"EUR"},
+                              {"KZT"}};
+    }
+
+    @Test(dataProvider = "currenciesSet")
+    public void currenciesSetTests(String currency) {
+        user = new User().withEmail(generate.randomEmail()).withName(generate.randomAccountName(15))
+                         .withPassword(generate.password).withActive(true)
+                         .withCurrency(currency).withInitBalance(generate.randomValue(1000, 2000))
+                         .withIsTrial(false).withApiKey(generate.api_key);
+
+
     }
 }
