@@ -24,7 +24,7 @@ public class Users {
     @Column(name = "api_key")
     private String api_key;
     @Column(name = "currency_id")
-    private String currency_id;
+    private int currency_id;
 
     public int getId() {
         return id;
@@ -44,5 +44,7 @@ public class Users {
     public String getApi_key() {
         return api_key;
     }
-
+    public String getUsername() {
+        return username;
+    }
 }
