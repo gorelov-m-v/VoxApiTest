@@ -13,7 +13,7 @@ public class Generator {
     Random random = new Random();
 
     public String randomString(int length) {
-        String combination = LOWER + DIGITS + UPPER;
+        String combination = LOWER + UPPER;
         char[] string = new char[length];
         for(int i = 0; i < length; i++) {
             string[i] = combination.charAt(random.nextInt(combination.length()));

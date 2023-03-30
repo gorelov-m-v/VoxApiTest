@@ -1,10 +1,6 @@
 package Database.model;
 
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="users", schema = "public")
@@ -23,9 +19,17 @@ public class Users {
     private boolean active;
     @Column(name = "api_key")
     private String api_key;
-    @Column(name = "currency_id")
-    private int currency_id;
 
+    @OneToOne
+    @JoinColumn(name = "currency_id")
+    private Currency currency;
+
+    public Currency getCurrency() {
+        return currency;
+    }
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
     public int getId() {
         return id;
     }

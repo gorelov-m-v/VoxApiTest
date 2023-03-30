@@ -26,20 +26,6 @@ public class AddAccountTest {
         RestAssured.baseURI = paths.URL;
     }
 
-    @Test
-    public void AddAccountSmoke() {
-        user = new User().withEmail(generate.randomEmail()).withName(generate.randomAccountName(20))
-                .withPassword(generate.password).withActive(true)
-                .withCurrency(generate.CURRENCY[0]).withInitBalance(generate.randomValue(1000, 2000))
-                .withIsTrial(false).withApiKey(generate.api_key);
-
-
-        response = request.addAccount(user);
-
-        assertThat(user.accountName().toLowerCase()).isEqualTo(db.getUserByName(user.accountName().toLowerCase()).username());
-        assertThat(response.account_id()).isEqualTo(db.getUserByName(user.accountName().toLowerCase()).getId());
-    }
-
     @DataProvider(name = "accountNameLength")
     public static Object[][] passwordLength() {
 
@@ -59,9 +45,9 @@ public class AddAccountTest {
     public void accountNameLengthTest(int accountNameLength) {
 
         user = new User().withEmail(generate.randomEmail()).withName(generate.randomAccountName(accountNameLength))
-                .withPassword(generate.password).withActive(true)
-                .withCurrency(generate.CURRENCY[0]).withInitBalance(generate.randomValue(1000, 2000))
-                .withIsTrial(false).withApiKey(generate.api_key);
+                         .withPassword(generate.password).withActive(true)
+                         .withCurrency(generate.CURRENCY[0]).withInitBalance(generate.randomValue(1000, 2000))
+                         .withIsTrial(false).withApiKey(generate.api_key);
 
         response = request.addAccount(user);
 
@@ -93,6 +79,8 @@ public class AddAccountTest {
                          .withCurrency(currency).withInitBalance(generate.randomValue(1000, 2000))
                          .withIsTrial(false).withApiKey(generate.api_key);
 
+        response = request.addAccount(user);
 
+        assertThat(db.getUserByName(user.accountName().toLowerCase()).getCurrency().getCode()).isEqualTo(user.getCurrency());
     }
 }

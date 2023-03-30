@@ -23,6 +23,7 @@
 
         <!-- Annotated entity classes -->
         <mapping class="Database.model.Users"/>
+        <mapping class="Database.model.Currency"/>
 
     </session-factory>
 </hibernate-configuration>
