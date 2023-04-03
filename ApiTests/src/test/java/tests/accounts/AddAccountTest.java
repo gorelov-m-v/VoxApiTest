@@ -12,6 +12,7 @@ import response.accounts.AddAccountResponse;
 import utils.Generator;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class AddAccountTest {
     Paths paths = new Paths();
@@ -24,6 +25,37 @@ public class AddAccountTest {
     @BeforeMethod
     public void setUp() {
         RestAssured.baseURI = paths.URL;
+    }
+
+    @DataProvider(name = "mandatoryParams")
+    public Object[][] mandatoryParamsSet() {
+
+        return new Object[][]{{ new User().withEmail(generate.randomEmail())
+                                          .withName(generate.randomAccountName(15))
+                                          .withPassword(generate.simplePassword).withApiKey(generate.api_key)
+                                          .withActive(true), 1},
+                              { new User().withName(generate.randomAccountName(15))
+                                          .withPassword(generate.simplePassword).withApiKey(generate.api_key)
+                                          .withActive(true), 0},
+                              { new User().withEmail(generate.randomEmail())
+                                          .withPassword(generate.simplePassword).withApiKey(generate.api_key)
+                                          .withActive(true), 0},
+                              { new User().withEmail(generate.randomEmail())
+                                          .withName(generate.randomAccountName(15))
+                                          .withApiKey(generate.api_key)
+                                          .withActive(true), 0},
+                              { new User().withEmail(generate.randomEmail())
+                                          .withName(generate.randomAccountName(15))
+                                          .withPassword(generate.simplePassword)
+                                          .withActive(true), 0}};
+    }
+
+    @Test(dataProvider = "mandatoryParams")
+    public void mandatoryParamsTest(User user, int result) {
+
+        response = request.addAccount(user);
+
+        assertThat(response.result()).isEqualTo(result);
     }
 
     @DataProvider(name = "accountNameLength")
