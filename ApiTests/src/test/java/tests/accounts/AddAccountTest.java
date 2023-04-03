@@ -27,13 +27,13 @@ public class AddAccountTest {
     }
 
     @DataProvider(name = "accountNameLength")
-    public static Object[][] passwordLength() {
+    public static Object[][] nameLength() {
 
-        return new Object[][]{{0},
-                              {2},
-                              {4},
-                              {5},
-                              {6},
+        return new Object[][]{{ 0},
+                              { 2},
+                              { 4},
+                              { 5},
+                              { 6},
                               {10},
                               {19},
                               {20},
@@ -45,9 +45,8 @@ public class AddAccountTest {
     public void accountNameLengthTest(int accountNameLength) {
 
         user = new User().withEmail(generate.randomEmail()).withName(generate.randomAccountName(accountNameLength))
-                         .withPassword(generate.password).withActive(true)
-                         .withCurrency(generate.CURRENCY[0]).withInitBalance(generate.randomValue(1000, 2000))
-                         .withIsTrial(false).withApiKey(generate.api_key);
+                         .withPassword(generate.simplePassword).withActive(true)
+                         .withCurrency(generate.CURRENCY[0]).withApiKey(generate.api_key);
 
         response = request.addAccount(user);
 
@@ -63,6 +62,38 @@ public class AddAccountTest {
         }
     }
 
+    @DataProvider(name = "passwordLength")
+    public static Object[][] passwordLength() {
+
+        return new Object[][]{{ 7},
+                              { 8},
+                              { 9},
+                              {14}};
+    }
+
+    @Test(dataProvider = "passwordLength")
+    public void passwordLengthTest(int passwordLength) {
+
+        user = new User().withEmail(generate.randomEmail()).withName(generate.randomAccountName(15))
+                .withPassword(generate.randomPassword(passwordLength)).withActive(true)
+                .withCurrency(generate.CURRENCY[0]).withApiKey(generate.api_key);
+
+        response = request.addAccount(user);
+
+        if (response.result() == 1) {
+            assertThat(response.account_id()).isNotNull();
+            assertThat(response.api_key()).isNotNull();
+            assertThat(response.billing_account_id()).isNotNull();
+            assertThat(response.active()).isEqualTo(user.active());
+        } else {
+            System.out.println(user.getAccount_password());
+            assertThat(response.getError().getMsg()).isEqualTo("Password should be at least 8 characters long and contain uppercase characters (A-Z), lowercase characters (a-z), digits (0-9) and special characters (~!@#$%^&*_-+=`|\\(){}[]:;\"'<>,.?/)");
+            assertThat(response.getError().getCode()).isEqualTo(464);
+
+            assertThat(response.getError().getField_name()).isEqualTo("account_password");
+        }
+    }
+
     @DataProvider(name = "currenciesSet")
     public static Object[][] currenciesSet() {
 
@@ -75,9 +106,8 @@ public class AddAccountTest {
     @Test(dataProvider = "currenciesSet")
     public void currenciesSetTests(String currency) {
         user = new User().withEmail(generate.randomEmail()).withName(generate.randomAccountName(15))
-                         .withPassword(generate.password).withActive(true)
-                         .withCurrency(currency).withInitBalance(generate.randomValue(1000, 2000))
-                         .withIsTrial(false).withApiKey(generate.api_key);
+                         .withPassword(generate.simplePassword).withActive(true)
+                         .withCurrency(currency).withApiKey(generate.api_key);
 
         response = request.addAccount(user);
 

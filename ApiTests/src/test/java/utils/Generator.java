@@ -9,7 +9,7 @@ public class Generator {
     private final String DIGITS = "0123456789";
     public String[] CURRENCY  = {"RUR", "USD", "EUR", "KZT"};
     public String api_key = "sasa";
-    public String password = "Aa123456!";
+    public String simplePassword = "Aa123456!";
     Random random = new Random();
 
     public String randomString(int length) {
@@ -25,6 +25,16 @@ public class Generator {
         String suffix = "@testmail.ru";
         String randomEmail = randomString(20) + suffix;
         return randomEmail.toLowerCase();
+    }
+
+    public String randomPassword(int length) {
+        String suffix = "Aa!1";
+        int randomPathLength = length - suffix.length();
+        if(length == 0) {
+            return "";
+        }
+        String randomPassword = randomString(randomPathLength) + suffix;
+        return randomPassword;
     }
 
     public String randomAccountName(int length) {
