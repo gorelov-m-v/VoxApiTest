@@ -1,9 +1,9 @@
-package Database.model;
+package appmanager;
 
+import database.model.Users;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import java.util.List;
 
 public class DbHelper {
 
@@ -12,7 +12,7 @@ public class DbHelper {
     public Users getUserByName(String name) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        Users result = (Users) session.createQuery(String.format("from Users where username = '%s'", name)).uniqueResult();
+        Users result = (Users) session.createQuery(String.format("from database.model.Users where username = '%s'", name)).uniqueResult();
 
         session.getTransaction().commit();
         session.close();

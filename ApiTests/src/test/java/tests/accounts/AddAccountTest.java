@@ -1,9 +1,9 @@
 package tests.accounts;
 
-import Database.model.DbHelper;
+import appmanager.DbHelper;
 import constants.Paths;
 import io.restassured.RestAssured;
-import model.User;
+import requests.model.User;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;

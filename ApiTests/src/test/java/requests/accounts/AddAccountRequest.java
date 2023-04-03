@@ -4,7 +4,7 @@ import constants.Paths;
 import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
 import io.restassured.config.RestAssuredConfig;
-import model.User;
+import requests.model.User;
 import org.apache.http.params.CoreConnectionPNames;
 import response.accounts.AddAccountResponse;
 
