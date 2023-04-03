@@ -47,7 +47,10 @@ public class AddAccountTest {
                               { new User().withEmail(generate.randomEmail())
                                           .withName(generate.randomAccountName(15))
                                           .withPassword(generate.simplePassword)
-                                          .withActive(true), 0}};
+                                          .withActive(true), 0},
+                              { new User().withEmail(generate.randomEmail())
+                                          .withName(generate.randomAccountName(15))
+                                          .withPassword(generate.simplePassword).withApiKey(generate.api_key), 0}};
     }
 
     @Test(dataProvider = "mandatoryParams")
