@@ -5,6 +5,7 @@ import response.accounts.paths.Error;
 
 import java.util.List;
 
+// VoxDocs  https://voximplant.com/docs/references/httpapi/accounts#addaccount
 public class AddAccountResponse {
     private int result;
     private int account_id;
