@@ -8,6 +8,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="currencies", schema = "billing")
 public class Currency {
+
     @Id
     @Column(name = "id")
     private int id;
@@ -16,28 +17,21 @@ public class Currency {
     @Column(name = "symbol", columnDefinition = "bpchar(1)", length = 1)
     private String symbol;
 
-
-
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     public String getCode() {
         return code;
     }
-
     public void setCode(String code) {
         this.code = code;
     }
-
     public String getSymbol() {
         return symbol;
     }
-
     public void setSymbol(String symbol) {
         this.symbol = symbol;
     }

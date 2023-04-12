@@ -10,16 +10,17 @@ import org.testng.annotations.Test;
 import requests.accounts.AddAccountRequest;
 import response.accounts.AddAccountResponse;
 import utils.Generator;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+
 
 public class AddAccountTest {
+
     Paths paths = new Paths();
     Generator generate = new Generator();
     AddAccountRequest request = new AddAccountRequest();
-    AddAccountResponse response;
     DbHelper db = new DbHelper();
+
+    AddAccountResponse response;
     User user;
 
     @BeforeMethod
@@ -80,8 +81,7 @@ public class AddAccountTest {
     public void accountNameLengthTest(int accountNameLength) {
 
         user = new User().withEmail(generate.randomEmail()).withName(generate.randomAccountName(accountNameLength))
-                         .withPassword(generate.simplePassword).withActive(true)
-                         .withCurrency(generate.CURRENCY[0]).withApiKey(generate.api_key);
+                         .withPassword(generate.simplePassword).withActive(true).withApiKey(generate.api_key);
 
         response = request.addAccount(user);
 
@@ -110,8 +110,7 @@ public class AddAccountTest {
     public void passwordLengthTest(int passwordLength) {
 
         user = new User().withEmail(generate.randomEmail()).withName(generate.randomAccountName(15))
-                .withPassword(generate.randomPassword(passwordLength)).withActive(true)
-                .withCurrency(generate.CURRENCY[0]).withApiKey(generate.api_key);
+                .withPassword(generate.randomPassword(passwordLength)).withActive(true).withApiKey(generate.api_key);
 
         response = request.addAccount(user);
 
