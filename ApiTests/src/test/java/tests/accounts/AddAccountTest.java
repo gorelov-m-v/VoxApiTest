@@ -10,22 +10,24 @@ import org.testng.annotations.Test;
 import requests.accounts.AddAccountRequest;
 import response.accounts.AddAccountResponse;
 import utils.Generator;
+
+import java.io.IOException;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class AddAccountTest {
+public class AddAccountTest extends TestBase {
 
     Paths paths = new Paths();
     Generator generate = new Generator();
     AddAccountRequest request = new AddAccountRequest();
-    DbHelper db = new DbHelper();
-
     AddAccountResponse response;
     User user;
 
     @BeforeMethod
-    public void setUp() {
-        RestAssured.baseURI = paths.URL;
+    public void setUp() throws IOException {
+        app.init();
+        RestAssured.baseURI = app.getProperty("URL");
     }
 
     @DataProvider(name = "mandatoryParams")
@@ -145,6 +147,6 @@ public class AddAccountTest {
 
         response = request.addAccount(user);
 
-        assertThat(db.getUserByName(user.accountName().toLowerCase()).getCurrency().getCode()).isEqualTo(user.getCurrency());
+        assertThat(app.db().getUserByName(user.accountName().toLowerCase()).getCurrency().getCode()).isEqualTo(user.getCurrency());
     }
 }

@@ -5,8 +5,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class DbHelper {
+public class DbHelper extends HelperBase {
 
+
+    public DbHelper(ApplicationManager app) {
+        super(app);
+    }
     private final SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 
     public Users getUserByName(String name) {
