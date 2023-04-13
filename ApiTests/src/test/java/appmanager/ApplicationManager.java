@@ -9,6 +9,7 @@ public class ApplicationManager {
 
     private final Properties properties;
     private DbHelper db;
+    private Generator generate;
 
     public ApplicationManager() {
         properties = new Properties();
@@ -28,5 +29,12 @@ public class ApplicationManager {
             db = new DbHelper(this);
         }
         return db;
+    }
+
+    public Generator generate() {
+        if(generate == null) {
+            generate = new Generator(this);
+        }
+        return generate;
     }
 }

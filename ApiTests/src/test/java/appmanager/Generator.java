@@ -1,8 +1,12 @@
-package utils;
+package appmanager;
 
 import java.util.Random;
 
-public class Generator {
+public class Generator extends HelperBase {
+
+    public Generator(ApplicationManager app) {
+        super(app);
+    }
 
     private final String LOWER = "abcdefghijklmnopqrstuvwxyz";
     private final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

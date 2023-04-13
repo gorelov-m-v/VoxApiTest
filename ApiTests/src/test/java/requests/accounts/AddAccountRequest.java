@@ -29,7 +29,7 @@ public class AddAccountRequest {
                     .queryParam("api_key", user.getApiKey())
                     .queryParam("active", user.active())
                     // Mandatory for parent account
-                    .queryParam("getParent_account_id", user.getParent_account_id())
+                    .queryParam("parent_account_id", user.getParent_account_id())
                     .queryParam("parent_account_name", user.getParent_account_name())
                     .queryParam("parent_account_email", user.getParent_account_email())
                     .queryParam("parent_account_api_key", user.getParent_account_api_key())

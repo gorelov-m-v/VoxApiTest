@@ -1,7 +1,5 @@
 package tests.accounts;
 
-import appmanager.DbHelper;
-import constants.Paths;
 import io.restassured.RestAssured;
 import requests.model.User;
 import org.testng.annotations.BeforeMethod;
@@ -9,17 +7,16 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import requests.accounts.AddAccountRequest;
 import response.accounts.AddAccountResponse;
-import utils.Generator;
+import appmanager.Generator;
 
 import java.io.IOException;
 
+import static java.time.LocalDate.now;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class AddAccountTest extends TestBase {
 
-    Paths paths = new Paths();
-    Generator generate = new Generator();
     AddAccountRequest request = new AddAccountRequest();
     AddAccountResponse response;
     User user;
@@ -33,27 +30,27 @@ public class AddAccountTest extends TestBase {
     @DataProvider(name = "mandatoryParams")
     public Object[][] mandatoryParamsSet() {
 
-        return new Object[][]{{ new User().withEmail(generate.randomEmail())
-                                          .withName(generate.randomAccountName(15))
-                                          .withPassword(generate.simplePassword).withApiKey(generate.api_key)
+        return new Object[][]{{ new User().withEmail(app.generate().randomEmail())
+                                          .withName(app.generate().randomAccountName(15))
+                                          .withPassword(app.generate().simplePassword).withApiKey(app.generate().api_key)
                                           .withActive(true), 1},
-                              { new User().withName(generate.randomAccountName(15))
-                                          .withPassword(generate.simplePassword).withApiKey(generate.api_key)
+                              { new User().withName(app.generate().randomAccountName(15))
+                                          .withPassword(app.generate().simplePassword).withApiKey(app.generate().api_key)
                                           .withActive(true), 0},
-                              { new User().withEmail(generate.randomEmail())
-                                          .withPassword(generate.simplePassword).withApiKey(generate.api_key)
+                              { new User().withEmail(app.generate().randomEmail())
+                                          .withPassword(app.generate().simplePassword).withApiKey(app.generate().api_key)
                                           .withActive(true), 0},
-                              { new User().withEmail(generate.randomEmail())
-                                          .withName(generate.randomAccountName(15))
-                                          .withApiKey(generate.api_key)
+                              { new User().withEmail(app.generate().randomEmail())
+                                          .withName(app.generate().randomAccountName(15))
+                                          .withApiKey(app.generate().api_key)
                                           .withActive(true), 0},
-                              { new User().withEmail(generate.randomEmail())
-                                          .withName(generate.randomAccountName(15))
-                                          .withPassword(generate.simplePassword)
+                              { new User().withEmail(app.generate().randomEmail())
+                                          .withName(app.generate().randomAccountName(15))
+                                          .withPassword(app.generate().simplePassword)
                                           .withActive(true), 0},
-                              { new User().withEmail(generate.randomEmail())
-                                          .withName(generate.randomAccountName(15))
-                                          .withPassword(generate.simplePassword).withApiKey(generate.api_key), 0}};
+                              { new User().withEmail(app.generate().randomEmail())
+                                          .withName(app.generate().randomAccountName(15))
+                                          .withPassword(app.generate().simplePassword).withApiKey(app.generate().api_key), 0}};
     }
 
     @Test(dataProvider = "mandatoryParams")
@@ -82,8 +79,8 @@ public class AddAccountTest extends TestBase {
     @Test(dataProvider = "accountNameLength")
     public void accountNameLengthTest(int accountNameLength) {
 
-        user = new User().withEmail(generate.randomEmail()).withName(generate.randomAccountName(accountNameLength))
-                         .withPassword(generate.simplePassword).withActive(true).withApiKey(generate.api_key);
+        user = new User().withEmail(app.generate().randomEmail()).withName(app.generate().randomAccountName(accountNameLength))
+                         .withPassword(app.generate().simplePassword).withActive(true).withApiKey(app.generate().api_key);
 
         response = request.addAccount(user);
 
@@ -111,8 +108,8 @@ public class AddAccountTest extends TestBase {
     @Test(dataProvider = "passwordLength")
     public void passwordLengthTest(int passwordLength) {
 
-        user = new User().withEmail(generate.randomEmail()).withName(generate.randomAccountName(15))
-                .withPassword(generate.randomPassword(passwordLength)).withActive(true).withApiKey(generate.api_key);
+        user = new User().withEmail(app.generate().randomEmail()).withName(app.generate().randomAccountName(15))
+                .withPassword(app.generate().randomPassword(passwordLength)).withActive(true).withApiKey(app.generate().api_key);
 
         response = request.addAccount(user);
 
@@ -141,12 +138,16 @@ public class AddAccountTest extends TestBase {
 
     @Test(dataProvider = "currenciesSet")
     public void currenciesSetTests(String currency) {
-        user = new User().withEmail(generate.randomEmail()).withName(generate.randomAccountName(15))
-                         .withPassword(generate.simplePassword).withActive(true)
-                         .withCurrency(currency).withApiKey(generate.api_key);
+        user = new User().withEmail(app.generate().randomEmail()).withName(app.generate().randomAccountName(15))
+                         .withPassword(app.generate().simplePassword).withActive(true)
+                         .withCurrency(currency).withApiKey(app.generate().api_key);
 
         response = request.addAccount(user);
 
         assertThat(app.db().getUserByName(user.accountName().toLowerCase()).getCurrency().getCode()).isEqualTo(user.getCurrency());
+//        System.out.println(app.db().getUserByName(user.accountName().toLowerCase()).getPassword());
+//        System.out.println(app.db().getUserByName(user.accountName().toLowerCase()).getActivated());
+//        LocalDate now = now();
+//        System.out.println(now);
     }
 }

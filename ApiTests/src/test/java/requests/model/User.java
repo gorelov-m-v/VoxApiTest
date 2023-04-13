@@ -11,7 +11,7 @@ public class User {
     private String api_key;
 
     // Mandatory for parent account
-    private int parent_account_id;
+    private Integer parent_account_id;
     private String parent_account_name;
     private String parent_account_email;
     private String parent_account_api_key;
@@ -50,7 +50,7 @@ public class User {
         return api_key;
     }
 
-    public int getParent_account_id() {
+    public Integer getParent_account_id() {
         return parent_account_id;
     }
     public String getParent_account_name() {
