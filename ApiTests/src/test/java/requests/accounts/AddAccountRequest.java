@@ -51,8 +51,12 @@ public class AddAccountRequest {
                     .queryParam("record_storage_name", user.getRecord_storage_name())
 
                     .when()
+                    .log()
+                    .all()
                     .get(paths.addAccount)
                     .then()
+                    .log()
+                    .all()
                     .extract()
                     .body()
                     .as(AddAccountResponse.class);

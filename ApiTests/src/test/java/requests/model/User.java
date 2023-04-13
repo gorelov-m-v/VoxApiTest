@@ -20,8 +20,8 @@ public class User {
     // Optional
     private String currency;
     private boolean is_trial;
-    private int init_balance;
-    private double min_balance_to_notify;
+    private Integer init_balance;
+    private Double min_balance_to_notify;
     private String account_custom_data;
     private String account_first_name;
     private String account_last_name;
@@ -66,7 +66,7 @@ public class User {
         return parent_account_password;
     }
 
-    public double getMin_balance_to_notify() {
+    public Double getMin_balance_to_notify() {
         return min_balance_to_notify;
     }
     public String getAccount_custom_data() {
@@ -105,7 +105,7 @@ public class User {
     public String getCurrency() {
         return currency;
     }
-    public int getInitBalance() {
+    public Integer getInitBalance() {
         return init_balance;
     }
 
