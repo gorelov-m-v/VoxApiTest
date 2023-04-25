@@ -17,7 +17,6 @@ public class AddAccountRequest {
             .httpClient(HttpClientConfig.httpClientConfig()
                     .setParam(CoreConnectionPNames.CONNECTION_TIMEOUT, 2000)
                     .setParam(CoreConnectionPNames.SO_TIMEOUT, 2000));
-
     public AddAccountResponse addAccount(User user) {
         return given()
                     .config(config)

@@ -7,7 +7,6 @@ import org.hibernate.cfg.Configuration;
 
 public class DbHelper extends HelperBase {
 
-
     public DbHelper(ApplicationManager app) {
         super(app);
     }

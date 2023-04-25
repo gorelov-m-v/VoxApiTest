@@ -7,7 +7,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import requests.accounts.AddAccountRequest;
 import response.accounts.AddAccountResponse;
-import appmanager.Generator;
 
 import java.io.IOException;
 
@@ -15,7 +14,7 @@ import static java.time.LocalDate.now;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class AddAccountTest extends TestBase {
+public class AddAccountTests extends TestBase {
 
     AddAccountRequest request = new AddAccountRequest();
     AddAccountResponse response;
@@ -136,7 +135,7 @@ public class AddAccountTest extends TestBase {
                               {"KZT"}};
     }
 
-    @Test(dataProvider = "currenciesSet")
+    @Test
     public void currenciesSetTests(String currency) {
         user = new User().withEmail(app.generate().randomEmail()).withName(app.generate().randomAccountName(15))
                          .withPassword(app.generate().simplePassword).withActive(true)

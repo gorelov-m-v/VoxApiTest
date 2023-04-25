@@ -10,6 +10,7 @@ public class ApplicationManager {
     private final Properties properties;
     private DbHelper db;
     private Generator generate;
+    private P2PPublisher p2p;
 
     public ApplicationManager() {
         properties = new Properties();
@@ -36,5 +37,12 @@ public class ApplicationManager {
             generate = new Generator(this);
         }
         return generate;
+    }
+
+    public P2PPublisher p2p() {
+        if(p2p == null) {
+            p2p = new P2PPublisher(this);
+        }
+        return p2p;
     }
 }
