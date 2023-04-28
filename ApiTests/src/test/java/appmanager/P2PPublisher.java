@@ -25,7 +25,7 @@ public class P2PPublisher extends HelperBase{
         Channel channel = connection.createChannel();
 
         BasicProperties props = new BasicProperties.Builder()
-                .messageId(UUID.randomUUID().toString()) //idempotency key
+                .messageId(UUID.randomUUID().toString())
                 .build();
 
 

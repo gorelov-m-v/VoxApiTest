@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Generator extends HelperBase {
+    Random random = new Random();
 
     public Generator(ApplicationManager app) {
         super(app);
@@ -19,11 +20,7 @@ public class Generator extends HelperBase {
     private static final String DIGITS = "0123456789";
     private static final String SPECIAL = "~!@#$%^&*_-+=`|\\(){}[]:;\"'<>,.?/";
     public static final String ALPHANUMERIC_AND_SPECIAL_SYMBOLS = UPPER + LOWER + DIGITS + SPECIAL;
-
-    public String[] CURRENCY  = {"RUR", "USD", "EUR", "KZT"};
-    public String api_key = "sasa";
     public String simplePassword = "Aa123456!";
-    Random random = new Random();
 
     public String randomString(int length) {
         String combination = LOWER + UPPER;

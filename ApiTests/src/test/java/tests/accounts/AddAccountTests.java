@@ -23,7 +23,7 @@ public class AddAccountTests extends TestBase {
     @BeforeMethod
     public void setUp() throws IOException {
         app.init();
-        RestAssured.baseURI = app.getProperty("URL");
+        RestAssured.baseURI = app.getProperty("papi.host");
     }
 
     @DataProvider(name = "mandatoryParams")
@@ -31,17 +31,17 @@ public class AddAccountTests extends TestBase {
 
         return new Object[][]{{ new User().withEmail(app.generate().randomEmail())
                                           .withName(app.generate().randomAccountName(15))
-                                          .withPassword(app.generate().simplePassword).withApiKey(app.generate().api_key)
+                                          .withPassword(app.generate().simplePassword).withApiKey(app.getProperty("papi.admin_api-key"))
                                           .withActive(true), 1},
                               { new User().withName(app.generate().randomAccountName(15))
-                                          .withPassword(app.generate().simplePassword).withApiKey(app.generate().api_key)
+                                          .withPassword(app.generate().simplePassword).withApiKey(app.getProperty("papi.admin_api-key"))
                                           .withActive(true), 0},
                               { new User().withEmail(app.generate().randomEmail())
-                                          .withPassword(app.generate().simplePassword).withApiKey(app.generate().api_key)
+                                          .withPassword(app.generate().simplePassword).withApiKey(app.getProperty("papi.admin_api-key"))
                                           .withActive(true), 0},
                               { new User().withEmail(app.generate().randomEmail())
                                           .withName(app.generate().randomAccountName(15))
-                                          .withApiKey(app.generate().api_key)
+                                          .withApiKey(app.getProperty("papi.admin_api-key"))
                                           .withActive(true), 0},
                               { new User().withEmail(app.generate().randomEmail())
                                           .withName(app.generate().randomAccountName(15))
@@ -49,7 +49,7 @@ public class AddAccountTests extends TestBase {
                                           .withActive(true), 0},
                               { new User().withEmail(app.generate().randomEmail())
                                           .withName(app.generate().randomAccountName(15))
-                                          .withPassword(app.generate().simplePassword).withApiKey(app.generate().api_key), 0}};
+                                          .withPassword(app.generate().simplePassword).withApiKey(app.getProperty("papi.admin_api-key")), 0}};
     }
 
     @Test(dataProvider = "mandatoryParams")
@@ -79,7 +79,7 @@ public class AddAccountTests extends TestBase {
     public void accountNameLengthTest(int accountNameLength) {
 
         user = new User().withEmail(app.generate().randomEmail()).withName(app.generate().randomAccountName(accountNameLength))
-                         .withPassword(app.generate().simplePassword).withActive(true).withApiKey(app.generate().api_key);
+                         .withPassword(app.generate().simplePassword).withActive(true).withApiKey(app.getProperty("papi.admin_api-key"));
 
         response = request.addAccount(user);
 
@@ -108,7 +108,7 @@ public class AddAccountTests extends TestBase {
     public void passwordLengthTest(int passwordLength) {
 
         user = new User().withEmail(app.generate().randomEmail()).withName(app.generate().randomAccountName(15))
-                .withPassword(app.generate().randomPassword(passwordLength)).withActive(true).withApiKey(app.generate().api_key);
+                .withPassword(app.generate().randomPassword(passwordLength)).withActive(true).withApiKey(app.getProperty("papi.admin_api-key"));
 
         response = request.addAccount(user);
 
@@ -135,11 +135,11 @@ public class AddAccountTests extends TestBase {
                               {"KZT"}};
     }
 
-    @Test
+    @Test(dataProvider = "currenciesSet")
     public void currenciesSetTests(String currency) {
         user = new User().withEmail(app.generate().randomEmail()).withName(app.generate().randomAccountName(15))
                          .withPassword(app.generate().simplePassword).withActive(true)
-                         .withCurrency(currency).withApiKey(app.generate().api_key);
+                         .withCurrency(currency).withApiKey(app.getProperty("papi.admin_api-key"));
 
         response = request.addAccount(user);
 
