@@ -1,7 +1,6 @@
 package tests.accounts;
 
 import org.testng.annotations.Test;
-
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
@@ -21,6 +20,5 @@ public class ReceiveSMSTests extends TestBase{
         app.p2p().publish(app.getProperty("rabbitmq.exchange.sms"),
                           app.getProperty("rabbitmq.routing-key.receiveSms"),
                           message);
-
     }
 }

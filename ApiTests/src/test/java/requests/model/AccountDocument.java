@@ -1,5 +1,6 @@
 package requests.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class AccountDocument {
@@ -8,13 +9,13 @@ public class AccountDocument {
     private int account_id;
     private String api_key;
     private String legal_status;
-    private String esia_verified;
+    private boolean esia_verified;
     private int individual_passport_series;
     private int individual_passport_number;
     private String individual_passport_issued_by;
-    private Date individual_passport_issue_date;
+    private String individual_passport_issue_date;
     private String individual_full_name;
-    private Date individual_birth_date;
+    private String individual_birth_date;
     private String individual_registration_address;
     private String individual_phone_number;
     private String document_delivery_address;
@@ -29,7 +30,7 @@ public class AccountDocument {
     public String getLegalStatus() {
         return legal_status;
     }
-    public String getEsiaVerified() {
+    public boolean getEsiaVerified() {
         return esia_verified;
     }
     public int getIndividualPassportSeries() {
@@ -41,13 +42,13 @@ public class AccountDocument {
     public String getIndividualPassportIssued_by() {
         return individual_passport_issued_by;
     }
-    public Date getIndividualPassportIssueDate() {
+    public String getIndividualPassportIssueDate() {
         return individual_passport_issue_date;
     }
     public String getIndividualFullName() {
         return individual_full_name;
     }
-    public Date getIndividualBirthDate() {
+    public String getIndividualBirthDate() {
         return individual_birth_date;
     }
     public String getIndividualRegistrationAddress() {
@@ -75,7 +76,7 @@ public class AccountDocument {
         this.legal_status = legal_status;
         return this;
     }
-    public AccountDocument withEsiaVerified(String esia_verified) {
+    public AccountDocument withEsiaVerified(boolean esia_verified) {
         this.esia_verified = esia_verified;
         return this;
     }
@@ -91,7 +92,7 @@ public class AccountDocument {
         this.individual_passport_issued_by = individual_passport_issued_by;
         return this;
     }
-    public AccountDocument withIndividualPassportIssueDate(Date individual_passport_issue_date) {
+    public AccountDocument withIndividualPassportIssueDate(String individual_passport_issue_date) {
         this.individual_passport_issue_date = individual_passport_issue_date;
         return this;
     }
@@ -99,7 +100,7 @@ public class AccountDocument {
         this.individual_full_name = individual_full_name;
         return this;
     }
-    public AccountDocument withIndividualBirthDate(Date individual_birth_date) {
+    public AccountDocument withIndividualBirthDate(String individual_birth_date) {
         this.individual_birth_date = individual_birth_date;
         return this;
     }

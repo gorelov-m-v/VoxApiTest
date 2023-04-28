@@ -1,9 +1,16 @@
 package response.accounts;
 
+import response.accounts.paths.Error;
+import response.accounts.paths.Errors;
+
+import java.util.List;
+
 public class SetAccountDocumentResponse {
     private int result;
     private String document_status;
     private int document_id;
+    private Error error;
+    private List<Errors> errors;
 
     public int getResult() {
         return result;
@@ -14,6 +21,12 @@ public class SetAccountDocumentResponse {
     public int getDocument_id() {
         return document_id;
     }
+    public Error getError() {
+        return error;
+    }
+    public List<Errors> getErrors() {
+        return errors;
+    }
 
     public void setResult(int result) {
         this.result = result;
@@ -23,5 +36,11 @@ public class SetAccountDocumentResponse {
     }
     public void setDocument_id(int document_id) {
         this.document_id = document_id;
+    }
+    public void setError(Error error) {
+        this.error = error;
+    }
+    public void setErrors(List<Errors> errors) {
+        this.errors = errors;
     }
 }
