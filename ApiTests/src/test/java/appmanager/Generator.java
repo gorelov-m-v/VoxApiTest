@@ -2,7 +2,11 @@ package appmanager;
 
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
+import requests.model.AccountDocument;
+import requests.model.User;
+import response.accounts.AddAccountResponse;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -70,6 +74,27 @@ public class Generator extends HelperBase {
 
     public int randomValue(int min, int max) {
         return random.nextInt(max - min) + min;
+    }
+
+    public User randomUser() {
+        return new User().withEmail(app.generate().randomEmail())
+                .withName(app.generate().randomAccountName(15))
+                .withPassword(app.generate().simplePassword)
+                .withApiKey(app.getProperty("papi.admin_api-key"))
+                .withActive(true);
+    }
+
+    public AccountDocument randomAccountDocument(AddAccountResponse addAccountResponse) {
+        return new AccountDocument().withAccountId(addAccountResponse.account_id())
+                .withApiKey(app.getProperty("papi.admin_api-key")).withLegalStatus("individual")
+                .withEsiaVerified(true).withIndividualPassportSeries(1222)
+                .withIndividualPassportNumber(555667)
+                .withIndividualPassportIssuedBy("sdadasd")
+                .withIndividualPassportIssueDate(LocalDate.now().toString())
+                .withIndividualFullName("asdasdasd").withIndividualBirthDate(LocalDate.now().toString())
+                .withIndividualRegistrationAddress("dasdasd")
+                .withIndividualPhoneNumber("79032530778")
+                .withDocumentDeliveryAddress("sadasdasdasd").withEmail("mail123123dd@mail.ru");
     }
 
 }

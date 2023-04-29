@@ -7,7 +7,7 @@ import java.util.concurrent.TimeoutException;
 public class ReceiveSMSTests extends TestBase{
 
     @Test
-    public void receiveSMSByRabbitMessage() throws IOException, TimeoutException {
+    public void smoke() throws IOException, TimeoutException {
         String message = "{\n" +
                 "    \"source_number\":\"89032530778\",\n" +
                 "    \"destination_number\":\"32466901718\",\n" +

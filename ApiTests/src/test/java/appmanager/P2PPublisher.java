@@ -20,14 +20,12 @@ public class P2PPublisher extends HelperBase{
         connectionFactory.setUsername(app.getProperty("rabbitmq.username"));
         connectionFactory.setPassword(app.getProperty("rabbitmq.password"));
 
+        BasicProperties props = new BasicProperties.Builder()
+                                .messageId(UUID.randomUUID().toString())
+                                .build();
 
         Connection connection = connectionFactory.newConnection();
         Channel channel = connection.createChannel();
-
-        BasicProperties props = new BasicProperties.Builder()
-                .messageId(UUID.randomUUID().toString())
-                .build();
-
 
         channel.basicPublish(exchange, queue, props, message.getBytes());
 

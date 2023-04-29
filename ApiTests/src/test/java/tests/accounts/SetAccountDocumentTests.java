@@ -3,8 +3,11 @@ package tests.accounts;
 import io.restassured.RestAssured;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import requests.accounts.AddAccountRequest;
 import requests.accounts.SetAccountDocumentRequest;
 import requests.model.AccountDocument;
+import requests.model.User;
+import response.accounts.AddAccountResponse;
 import response.accounts.SetAccountDocumentResponse;
 
 import java.io.IOException;
@@ -14,8 +17,10 @@ import static org.assertj.core.util.DateUtil.now;
 
 public class SetAccountDocumentTests extends TestBase {
 
-    SetAccountDocumentRequest request = new SetAccountDocumentRequest();
-    SetAccountDocumentResponse response;
+    AddAccountRequest addAccountRequest = new AddAccountRequest();
+    AddAccountResponse addAccountResponse;
+    SetAccountDocumentRequest setDocumentRequest = new SetAccountDocumentRequest();
+    SetAccountDocumentResponse setDocumentResponse;
 
 
     @BeforeMethod
@@ -26,19 +31,10 @@ public class SetAccountDocumentTests extends TestBase {
 
     @Test
     public void smoke() {
+        User requestedUser = app.generate().randomUser();
+        addAccountResponse = addAccountRequest.addAccount(requestedUser);
 
-        LocalDate now = LocalDate.now();
-        System.out.println(now);
-        AccountDocument accountDocument = new AccountDocument().withAccountId(527350)
-                .withApiKey("sasa").withLegalStatus("individual").withEsiaVerified(true)
-                .withIndividualPassportSeries(1222).withIndividualPassportNumber(555667)
-                .withIndividualPassportIssuedBy("sdadasd").withIndividualPassportIssueDate(now.toString())
-                .withIndividualFullName("asdasdasd").withIndividualBirthDate(now.toString())
-                .withIndividualRegistrationAddress("dasdasd").withIndividualPhoneNumber("79032530778")
-                .withDocumentDeliveryAddress("sadasdasdasd").withEmail("mail123123dd@mail.ru");
-
-        response = request.setAccountDocument(accountDocument);
-
-
+        AccountDocument accountDocument = app.generate().randomAccountDocument(addAccountResponse);
+        setDocumentResponse = setDocumentRequest.setAccountDocument(accountDocument);
     }
 }
