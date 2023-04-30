@@ -1,6 +1,6 @@
-package response.accounts.paths;
+package http.model.universal;
 
-public class Error {
+public class Errors {
 
     private String msg;
     private int code;
@@ -25,4 +25,5 @@ public class Error {
     public void setField_name(String field_name) {
         this.field_name = field_name;
     }
+
 }

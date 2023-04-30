@@ -1,8 +1,7 @@
-package requests.model;
+package http.model.sms.received;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 
 public class ReceivedSmsDataSet {
 

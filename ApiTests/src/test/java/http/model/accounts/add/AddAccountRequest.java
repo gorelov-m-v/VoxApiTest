@@ -1,12 +1,11 @@
-package requests.accounts;
+package http.model.accounts.add;
 
 import constants.Paths;
 import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
 import io.restassured.config.RestAssuredConfig;
-import requests.model.UserDataSet;
 import org.apache.http.params.CoreConnectionPNames;
-import response.accounts.AddAccountResponse;
+
 import static io.restassured.RestAssured.given;
 
 // VoxDocs  https://voximplant.com/docs/references/httpapi/accounts#addaccount

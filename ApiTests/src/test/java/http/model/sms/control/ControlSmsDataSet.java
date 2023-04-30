@@ -1,4 +1,4 @@
-package requests.model;
+package http.model.sms.control;
 
 // https://voximplant.com/docs/references/httpapi/sms#controlsms
 public class ControlSmsDataSet {

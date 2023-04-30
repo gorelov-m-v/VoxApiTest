@@ -1,12 +1,11 @@
-package requests.accounts;
+package http.model.sms.control;
 
 import constants.Paths;
 import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
 import io.restassured.config.RestAssuredConfig;
 import org.apache.http.params.CoreConnectionPNames;
-import requests.model.ControlSmsDataSet;
-import response.accounts.UniversalResponse;
+import http.model.universal.UniversalResponse;
 import static io.restassured.RestAssured.given;
 
 public class ControlSmsRequest {

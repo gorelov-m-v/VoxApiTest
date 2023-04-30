@@ -2,9 +2,13 @@ package appmanager;
 
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
-import requests.model.*;
-import response.accounts.AddAccountResponse;
-import response.accounts.AttachPhoneNumberResponse;
+import http.model.accounts.add.AddAccountResponse;
+import http.model.accounts.add.UserDataSet;
+import http.model.accounts.setdocument.AccountDocumentDataSet;
+import http.model.phonenumbers.attach.AttachPhoneNumberDataSet;
+import http.model.phonenumbers.attach.AttachPhoneNumberResponse;
+import http.model.sms.control.ControlSmsDataSet;
+import http.model.sms.received.ReceivedSmsDataSet;
 
 import java.time.LocalDate;
 import java.util.*;

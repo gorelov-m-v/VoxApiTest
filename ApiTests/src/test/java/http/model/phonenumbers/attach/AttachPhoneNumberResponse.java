@@ -1,6 +1,4 @@
-package response.accounts;
-
-import response.accounts.paths.PhoneNumbers;
+package http.model.phonenumbers.attach;
 
 import java.util.List;
 

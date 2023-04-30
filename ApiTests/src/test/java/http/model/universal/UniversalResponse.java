@@ -1,7 +1,4 @@
-package response.accounts;
-
-import response.accounts.paths.Error;
-import response.accounts.paths.Errors;
+package http.model.universal;
 
 import java.util.List;
 

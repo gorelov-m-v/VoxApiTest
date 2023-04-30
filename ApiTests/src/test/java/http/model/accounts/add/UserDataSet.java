@@ -1,4 +1,4 @@
-package requests.model;
+package http.model.accounts.add;
 
 // VoxDocs  https://voximplant.com/docs/references/httpapi/accounts#addaccount
 public class UserDataSet {

@@ -1,7 +1,7 @@
-package response.accounts;
+package http.model.accounts.setdocument;
 
-import response.accounts.paths.Error;
-import response.accounts.paths.Errors;
+import http.model.universal.Error;
+import http.model.universal.Errors;
 
 import java.util.List;
 

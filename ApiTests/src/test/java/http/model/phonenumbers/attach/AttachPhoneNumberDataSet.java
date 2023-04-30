@@ -1,4 +1,4 @@
-package requests.model;
+package http.model.phonenumbers.attach;
 
 //https://voximplant.com/docs/references/httpapi/phonenumbers#bindphonenumbertoapplication
 public class AttachPhoneNumberDataSet {

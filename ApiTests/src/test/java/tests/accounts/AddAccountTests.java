@@ -1,10 +1,10 @@
 package tests.accounts;
 
-import requests.model.UserDataSet;
+import http.model.accounts.add.UserDataSet;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import requests.accounts.AddAccountRequest;
-import response.accounts.AddAccountResponse;
+import http.model.accounts.add.AddAccountRequest;
+import http.model.accounts.add.AddAccountResponse;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
