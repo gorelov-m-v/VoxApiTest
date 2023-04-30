@@ -114,7 +114,7 @@ public class Generator extends HelperBase {
     public ReceivedSmsDataSet randomReceivedSmsDataSet(AttachPhoneNumberResponse attachPhoneNumberResponse) {
         return new ReceivedSmsDataSet().withSourceNumber(app.generate().randomString(8))
                 .withDestinationNumber(attachPhoneNumberResponse.getPhone_numbers().get(0).getPhone_number())
-                .withUuid(Collections.singletonList(UUID.randomUUID().toString())).withFragmentsCount(1)
+                .withUuid(UUID.randomUUID().toString()).withFragmentsCount(1)
                 .withReceivedDate(LocalDate.now());
     }
 

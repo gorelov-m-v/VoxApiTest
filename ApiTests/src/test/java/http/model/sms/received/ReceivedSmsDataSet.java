@@ -7,7 +7,7 @@ public class ReceivedSmsDataSet {
 
     private String source_number;
     private String destination_number;
-    private List<String> uuid;
+    private String uuid;
     private String message;
     private int fragments_count;
     private LocalDate received_date;
@@ -18,7 +18,7 @@ public class ReceivedSmsDataSet {
     public String getDestinationNumber() {
         return destination_number;
     }
-    public List<String> getUuid() {
+    public String getUuid() {
         return uuid;
     }
     public String getMessage() {
@@ -39,7 +39,7 @@ public class ReceivedSmsDataSet {
         this.destination_number = destination_number;
         return this;
     }
-    public ReceivedSmsDataSet withUuid(List<String> uuid) {
+    public ReceivedSmsDataSet withUuid(String uuid) {
         this.uuid = uuid;
         return this;
     }

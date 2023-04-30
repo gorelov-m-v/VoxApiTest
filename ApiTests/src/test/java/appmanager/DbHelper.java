@@ -25,7 +25,7 @@ public class DbHelper extends HelperBase {
         return result;
     }
 
-    public SmsHistory getSmsByUUID(List<String> uuid) {
+    public SmsHistory getSmsByUUID(String uuid) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
