@@ -3,19 +3,46 @@ package tests.accounts;
 import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import requests.accounts.AddAccountRequest;
+import requests.accounts.AttachPhoneNumberRequest;
+import requests.accounts.ControlSmsRequest;
+import requests.accounts.SetAccountDocumentRequest;
+import requests.model.*;
+import response.accounts.AddAccountResponse;
+import response.accounts.AttachPhoneNumberResponse;
+import response.accounts.SetAccountDocumentResponse;
+import response.accounts.UniversalResponse;
 
 public class ReceiveSMSTests extends TestBase{
 
+    AddAccountRequest addAccountRequest = new AddAccountRequest();
+    AddAccountResponse addAccountResponse;
+    SetAccountDocumentRequest setDocumentRequest = new SetAccountDocumentRequest();
+    SetAccountDocumentResponse setDocumentResponse;
+    AttachPhoneNumberRequest attachPhoneNumberRequest = new AttachPhoneNumberRequest();
+    AttachPhoneNumberResponse attachPhoneNumberResponse;
+
+    ControlSmsRequest controlSmsRequest = new ControlSmsRequest();
+    UniversalResponse universalResponse;
+
     @Test
     public void smoke() throws IOException, TimeoutException {
-        String message = "{\n" +
-                "    \"source_number\":\"89032530778\",\n" +
-                "    \"destination_number\":\"32466901718\",\n" +
-                "    \"uuid\":[\"d50eee8e-f343-47f6-8fa6-322fa7b78856\"],\n" +
-                "    \"message\":\"la-la\",\n" +
-                "    \"fragments_count\":1,\n" +
-                "    \"received_date\":\"2023-02-16 00:00:00\"\n" +
-                "}";
+
+        User requestedUser = app.generate().randomUser();
+        addAccountResponse = addAccountRequest.addAccount(requestedUser);
+
+        AccountDocument accountDocument = app.generate().randomAccountDocument(addAccountResponse);
+        setDocumentResponse = setDocumentRequest.setAccountDocument(accountDocument);
+
+        AttachPhoneNumber attachPhoneNumber = app.generate().randomAttachPhoneNumber(addAccountResponse);
+        attachPhoneNumberResponse = attachPhoneNumberRequest.attachPhoneNumber(attachPhoneNumber);
+
+        ControlSms controlSms = app.generate().randomControlSms(addAccountResponse,attachPhoneNumberResponse);
+        universalResponse = controlSmsRequest.ControlSms(controlSms);
+
+        String message = app.generate().randomReceivedSmsDataSet(attachPhoneNumberResponse);
 
         app.p2p().publish(app.getProperty("rabbitmq.exchange.sms"),
                           app.getProperty("rabbitmq.routing-key.receiveSms"),

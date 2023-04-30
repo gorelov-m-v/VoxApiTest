@@ -2,18 +2,12 @@ package appmanager;
 
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
-import requests.model.AccountDocument;
-import requests.model.AttachPhoneNumber;
-import requests.model.ControlSms;
-import requests.model.User;
+import requests.model.*;
 import response.accounts.AddAccountResponse;
 import response.accounts.AttachPhoneNumberResponse;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Generator extends HelperBase {
     Random random = new Random();
@@ -113,6 +107,27 @@ public class Generator extends HelperBase {
                 .withApiKey(addAccountResponse.api_key())
                 .withPhoneNumber(attachPhoneNumberResponse.getPhone_numbers().get(0).getPhone_number())
                 .withCommand("enable");
+    }
+
+    public String randomReceivedSmsDataSet(AttachPhoneNumberResponse attachPhoneNumberResponse) {
+
+
+        String message = String.format("{\n" +
+                "    \"source_number\":\"%s\",\n" +
+                "    \"destination_number\":\"%s\",\n" +
+                "    \"uuid\":[\"%s\"],\n" +
+                "    \"message\":\"%s\",\n" +
+                "    \"fragments_count\":%s,\n" +
+                "    \"received_date\":\"%s\"\n" +
+                "}", app.generate().randomString(8)
+                   , attachPhoneNumberResponse.getPhone_numbers().get(0).getPhone_number()
+                   , UUID.randomUUID()
+                   , app.generate().randomString(15)
+                   , 1
+                   , LocalDate.now());
+
+        return message;
+
     }
 
 }
