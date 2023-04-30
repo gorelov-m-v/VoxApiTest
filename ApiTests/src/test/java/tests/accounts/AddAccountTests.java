@@ -1,13 +1,10 @@
 package tests.accounts;
 
-import io.restassured.RestAssured;
 import requests.model.User;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import requests.accounts.AddAccountRequest;
 import response.accounts.AddAccountResponse;
-import java.io.IOException;
 import static org.assertj.core.api.Assertions.assertThat;
 
 

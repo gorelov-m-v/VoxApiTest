@@ -4,8 +4,10 @@ import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
 import requests.model.AccountDocument;
 import requests.model.AttachPhoneNumber;
+import requests.model.ControlSms;
 import requests.model.User;
 import response.accounts.AddAccountResponse;
+import response.accounts.AttachPhoneNumberResponse;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -104,6 +106,13 @@ public class Generator extends HelperBase {
                                       .withCountryCode("BE")
                                       .withPhoneRegionId("20560")
                                       .withPhoneCategoryName("MOBILE");
+    }
+
+    public ControlSms randomControlSms(AddAccountResponse addAccountResponse, AttachPhoneNumberResponse attachPhoneNumberResponse) {
+        return new ControlSms().withAccountId(addAccountResponse.account_id())
+                .withApiKey(addAccountResponse.api_key())
+                .withPhoneNumber(attachPhoneNumberResponse.getPhone_numbers().get(0).getPhone_number())
+                .withCommand("enable");
     }
 
 }
