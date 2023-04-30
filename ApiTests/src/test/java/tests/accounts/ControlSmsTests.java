@@ -5,10 +5,10 @@ import requests.accounts.AddAccountRequest;
 import requests.accounts.AttachPhoneNumberRequest;
 import requests.accounts.ControlSmsRequest;
 import requests.accounts.SetAccountDocumentRequest;
-import requests.model.AccountDocument;
-import requests.model.AttachPhoneNumber;
-import requests.model.ControlSms;
-import requests.model.User;
+import requests.model.AccountDocumentDataSet;
+import requests.model.AttachPhoneNumberDataSet;
+import requests.model.ControlSmsDataSet;
+import requests.model.UserDataSet;
 import response.accounts.AddAccountResponse;
 import response.accounts.AttachPhoneNumberResponse;
 import response.accounts.SetAccountDocumentResponse;
@@ -27,16 +27,16 @@ public class ControlSmsTests extends TestBase {
 
     @Test
     public void smoke() {
-        User requestedUser = app.generate().randomUser();
-        addAccountResponse = addAccountRequest.addAccount(requestedUser);
+        UserDataSet requestedUserDataSet = app.generate().randomUser();
+        addAccountResponse = addAccountRequest.addAccount(requestedUserDataSet);
 
-        AccountDocument accountDocument = app.generate().randomAccountDocument(addAccountResponse);
-        setDocumentResponse = setDocumentRequest.setAccountDocument(accountDocument);
+        AccountDocumentDataSet accountDocumentDataSet = app.generate().randomAccountDocument(addAccountResponse);
+        setDocumentResponse = setDocumentRequest.setAccountDocument(accountDocumentDataSet);
 
-        AttachPhoneNumber attachPhoneNumber = app.generate().randomAttachPhoneNumber(addAccountResponse);
-        attachPhoneNumberResponse = attachPhoneNumberRequest.attachPhoneNumber(attachPhoneNumber);
+        AttachPhoneNumberDataSet attachPhoneNumberDataSet = app.generate().randomAttachPhoneNumber(addAccountResponse);
+        attachPhoneNumberResponse = attachPhoneNumberRequest.attachPhoneNumber(attachPhoneNumberDataSet);
 
-        ControlSms controlSms = app.generate().randomControlSms(addAccountResponse,attachPhoneNumberResponse);
-        universalResponse = controlSmsRequest.ControlSms(controlSms);
+        ControlSmsDataSet controlSmsDataSet = app.generate().randomControlSms(addAccountResponse,attachPhoneNumberResponse);
+        universalResponse = controlSmsRequest.ControlSms(controlSmsDataSet);
     }
 }

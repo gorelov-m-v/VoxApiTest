@@ -1,7 +1,7 @@
 package requests.model;
 
 // VoxDocs  https://voximplant.com/docs/references/httpapi/accounts#addaccount
-public class User {
+public class UserDataSet {
 
     // Mandatory
     private String account_name;
@@ -110,101 +110,101 @@ public class User {
     }
 
 
-    public User withName(String account_name) {
+    public UserDataSet withName(String account_name) {
         this.account_name = account_name;
         return this;
     }
-    public User withPassword(String account_password) {
+    public UserDataSet withPassword(String account_password) {
         this.account_password = account_password;
         return this;
     }
-    public User withEmail(String account_email) {
+    public UserDataSet withEmail(String account_email) {
         this.account_email = account_email;
         return this;
     }
-    public User withApiKey(String api_key) {
+    public UserDataSet withApiKey(String api_key) {
         this.api_key = api_key;
         return this;
     }
-    public User withActive(boolean active) {
+    public UserDataSet withActive(boolean active) {
         this.active = active;
         return this;
     }
 
-    public User withParent_account_id(int parent_account_id) {
+    public UserDataSet withParent_account_id(int parent_account_id) {
         this.parent_account_id = parent_account_id;
         return this;
     }
-    public User withParent_account_name(String parent_account_name) {
+    public UserDataSet withParent_account_name(String parent_account_name) {
         this.parent_account_name = parent_account_name;
         return this;
     }
-    public User withParent_account_email(String parent_account_email) {
+    public UserDataSet withParent_account_email(String parent_account_email) {
         this.parent_account_email = parent_account_email;
         return this;
     }
-    public User withParent_account_api_key(String parent_account_api_key) {
+    public UserDataSet withParent_account_api_key(String parent_account_api_key) {
         this.parent_account_api_key = parent_account_api_key;
         return this;
     }
-    public User withParent_account_password(String parent_account_password) {
+    public UserDataSet withParent_account_password(String parent_account_password) {
         this.parent_account_password = parent_account_password;
         return this;
     }
 
-    public User withCurrency(String currency) {
+    public UserDataSet withCurrency(String currency) {
         this.currency = currency;
         return this;
     }
-    public User withIsTrial(boolean is_trial) {
+    public UserDataSet withIsTrial(boolean is_trial) {
         this.is_trial = is_trial;
         return this;
     }
-    public User withInitBalance(int init_balance) {
+    public UserDataSet withInitBalance(int init_balance) {
         this.init_balance = init_balance;
         return this;
     }
-    public User withMin_balance_to_notify(double min_balance_to_notify) {
+    public UserDataSet withMin_balance_to_notify(double min_balance_to_notify) {
         this.min_balance_to_notify = min_balance_to_notify;
         return this;
     }
-    public User withAccount_custom_data(String account_custom_data) {
+    public UserDataSet withAccount_custom_data(String account_custom_data) {
         this.account_custom_data = account_custom_data;
         return this;
     }
-    public User withAccount_first_name(String account_first_name) {
+    public UserDataSet withAccount_first_name(String account_first_name) {
         this.account_first_name = account_first_name;
         return this;
     }
-    public User withAccount_last_name(String account_last_name) {
+    public UserDataSet withAccount_last_name(String account_last_name) {
         this.account_last_name = account_last_name;
         return this;
     }
-    public User withAccount_notifications(boolean account_notifications) {
+    public UserDataSet withAccount_notifications(boolean account_notifications) {
         this.account_notifications = account_notifications;
         return this;
     }
-    public User withTariff_changing_notifications(boolean tariff_changing_notifications) {
+    public UserDataSet withTariff_changing_notifications(boolean tariff_changing_notifications) {
         this.tariff_changing_notifications = tariff_changing_notifications;
         return this;
     }
-    public User withNews_notifications(boolean news_notifications) {
+    public UserDataSet withNews_notifications(boolean news_notifications) {
         this.news_notifications = news_notifications;
         return this;
     }
-    public User withLanguage_code(String language_code) {
+    public UserDataSet withLanguage_code(String language_code) {
         this.language_code = language_code;
         return this;
     }
-    public User withLocation(String location) {
+    public UserDataSet withLocation(String location) {
         this.location = location;
         return this;
     }
-    public User withRecord_storage_id(String record_storage_id) {
+    public UserDataSet withRecord_storage_id(String record_storage_id) {
         this.record_storage_id = record_storage_id;
         return this;
     }
-    public User withRecord_storage_name(String record_storage_name) {
+    public UserDataSet withRecord_storage_name(String record_storage_name) {
         this.record_storage_name = record_storage_name;
         return this;
     }

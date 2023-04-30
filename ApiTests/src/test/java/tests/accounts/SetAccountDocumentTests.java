@@ -1,15 +1,12 @@
 package tests.accounts;
 
-import io.restassured.RestAssured;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import requests.accounts.AddAccountRequest;
 import requests.accounts.SetAccountDocumentRequest;
-import requests.model.AccountDocument;
-import requests.model.User;
+import requests.model.AccountDocumentDataSet;
+import requests.model.UserDataSet;
 import response.accounts.AddAccountResponse;
 import response.accounts.SetAccountDocumentResponse;
-import java.io.IOException;
 
 public class SetAccountDocumentTests extends TestBase {
 
@@ -20,10 +17,10 @@ public class SetAccountDocumentTests extends TestBase {
 
     @Test
     public void smoke() {
-        User requestedUser = app.generate().randomUser();
-        addAccountResponse = addAccountRequest.addAccount(requestedUser);
+        UserDataSet requestedUserDataSet = app.generate().randomUser();
+        addAccountResponse = addAccountRequest.addAccount(requestedUserDataSet);
 
-        AccountDocument accountDocument = app.generate().randomAccountDocument(addAccountResponse);
-        setDocumentResponse = setDocumentRequest.setAccountDocument(accountDocument);
+        AccountDocumentDataSet accountDocumentDataSet = app.generate().randomAccountDocument(addAccountResponse);
+        setDocumentResponse = setDocumentRequest.setAccountDocument(accountDocumentDataSet);
     }
 }

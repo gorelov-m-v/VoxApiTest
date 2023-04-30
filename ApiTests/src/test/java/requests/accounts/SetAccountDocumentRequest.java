@@ -5,7 +5,7 @@ import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
 import io.restassured.config.RestAssuredConfig;
 import org.apache.http.params.CoreConnectionPNames;
-import requests.model.AccountDocument;
+import requests.model.AccountDocumentDataSet;
 import response.accounts.SetAccountDocumentResponse;
 import static io.restassured.RestAssured.given;
 
@@ -16,28 +16,28 @@ public class SetAccountDocumentRequest {
     RestAssuredConfig config = RestAssured.config()
             .httpClient(HttpClientConfig.httpClientConfig()
                     .setParam(CoreConnectionPNames.CONNECTION_TIMEOUT, 2000)
-                    .setParam(CoreConnectionPNames.SO_TIMEOUT, 2000));
+                    .setParam(CoreConnectionPNames.SO_TIMEOUT, 15000));
 
-    public SetAccountDocumentResponse setAccountDocument(AccountDocument accountDocument) {
+    public SetAccountDocumentResponse setAccountDocument(AccountDocumentDataSet accountDocumentDataSet) {
         return given()
                 .config(config)
                 .header("Content-type", "application/json")
 
                 // Mandatory for 'INDIVIDUAL'
-                .queryParam("account_id", accountDocument.getAccountId())
-                .queryParam("api_key", accountDocument.getApiKey())
-                .queryParam("legal_status", accountDocument.getLegalStatus())
-                .queryParam("esia_verified", accountDocument.getEsiaVerified())
-                .queryParam("individual_passport_series", accountDocument.getIndividualPassportSeries())
-                .queryParam("individual_passport_number", accountDocument.getIndividualPassportNumber())
-                .queryParam("individual_passport_issued_by", accountDocument.getIndividualPassportIssued_by())
-                .queryParam("individual_passport_issue_date", accountDocument.getIndividualPassportIssueDate())
-                .queryParam("individual_full_name", accountDocument.getIndividualFullName())
-                .queryParam("individual_birth_date", accountDocument.getIndividualBirthDate())
-                .queryParam("individual_registration_address", accountDocument.getIndividualRegistrationAddress())
-                .queryParam("individual_phone_number", accountDocument.getIndividualPhoneNumber())
-                .queryParam("document_delivery_address", accountDocument.getDocumentDeliveryAddress())
-                .queryParam("email", accountDocument.getEmail())
+                .queryParam("account_id", accountDocumentDataSet.getAccountId())
+                .queryParam("api_key", accountDocumentDataSet.getApiKey())
+                .queryParam("legal_status", accountDocumentDataSet.getLegalStatus())
+                .queryParam("esia_verified", accountDocumentDataSet.getEsiaVerified())
+                .queryParam("individual_passport_series", accountDocumentDataSet.getIndividualPassportSeries())
+                .queryParam("individual_passport_number", accountDocumentDataSet.getIndividualPassportNumber())
+                .queryParam("individual_passport_issued_by", accountDocumentDataSet.getIndividualPassportIssued_by())
+                .queryParam("individual_passport_issue_date", accountDocumentDataSet.getIndividualPassportIssueDate())
+                .queryParam("individual_full_name", accountDocumentDataSet.getIndividualFullName())
+                .queryParam("individual_birth_date", accountDocumentDataSet.getIndividualBirthDate())
+                .queryParam("individual_registration_address", accountDocumentDataSet.getIndividualRegistrationAddress())
+                .queryParam("individual_phone_number", accountDocumentDataSet.getIndividualPhoneNumber())
+                .queryParam("document_delivery_address", accountDocumentDataSet.getDocumentDeliveryAddress())
+                .queryParam("email", accountDocumentDataSet.getEmail())
 
                 .when()
                 .log()

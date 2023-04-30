@@ -1,7 +1,7 @@
 package requests.model;
 
 //https://voximplant.com/docs/references/httpapi/phonenumbers#bindphonenumbertoapplication
-public class AttachPhoneNumber {
+public class AttachPhoneNumberDataSet {
 
     // Mandatory
     private int account_id;
@@ -41,36 +41,36 @@ public class AttachPhoneNumber {
         return regulation_address_id;
     }
 
-    public AttachPhoneNumber withAccountId(int account_id) {
+    public AttachPhoneNumberDataSet withAccountId(int account_id) {
         this.account_id = account_id;
         return this;
     }
-    public AttachPhoneNumber withApiKey(String api_key) {
+    public AttachPhoneNumberDataSet withApiKey(String api_key) {
         this.api_key = api_key;
         return this;
     }
-    public AttachPhoneNumber withCountryCode(String country_code) {
+    public AttachPhoneNumberDataSet withCountryCode(String country_code) {
         this.country_code = country_code;
         return this;
     }
-    public AttachPhoneNumber withPhoneCategoryName(String phone_category_name) {
+    public AttachPhoneNumberDataSet withPhoneCategoryName(String phone_category_name) {
         this.phone_category_name = phone_category_name;
         return this;
     }
-    public AttachPhoneNumber withPhoneRegionId(String phone_region_id) {
+    public AttachPhoneNumberDataSet withPhoneRegionId(String phone_region_id) {
         this.phone_region_id = phone_region_id;
         return this;
     }
 
-    public AttachPhoneNumber withPhoneNumber(String phone_number) {
+    public AttachPhoneNumberDataSet withPhoneNumber(String phone_number) {
         this.phone_number = phone_number;
         return this;
     }
-    public AttachPhoneNumber withCountryState(String country_state) {
+    public AttachPhoneNumberDataSet withCountryState(String country_state) {
         this.country_state = country_state;
         return this;
     }
-    public AttachPhoneNumber withRegulationAddressId(Integer regulation_address_id) {
+    public AttachPhoneNumberDataSet withRegulationAddressId(Integer regulation_address_id) {
         this.regulation_address_id = regulation_address_id;
         return this;
     }

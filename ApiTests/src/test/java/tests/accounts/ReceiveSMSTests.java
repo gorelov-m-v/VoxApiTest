@@ -3,8 +3,7 @@ package tests.accounts;
 import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
+
 import requests.accounts.AddAccountRequest;
 import requests.accounts.AttachPhoneNumberRequest;
 import requests.accounts.ControlSmsRequest;
@@ -30,17 +29,17 @@ public class ReceiveSMSTests extends TestBase{
     @Test
     public void smoke() throws IOException, TimeoutException {
 
-        User requestedUser = app.generate().randomUser();
-        addAccountResponse = addAccountRequest.addAccount(requestedUser);
+        UserDataSet requestedUserDataSet = app.generate().randomUser();
+        addAccountResponse = addAccountRequest.addAccount(requestedUserDataSet);
 
-        AccountDocument accountDocument = app.generate().randomAccountDocument(addAccountResponse);
-        setDocumentResponse = setDocumentRequest.setAccountDocument(accountDocument);
+        AccountDocumentDataSet accountDocumentDataSet = app.generate().randomAccountDocument(addAccountResponse);
+        setDocumentResponse = setDocumentRequest.setAccountDocument(accountDocumentDataSet);
 
-        AttachPhoneNumber attachPhoneNumber = app.generate().randomAttachPhoneNumber(addAccountResponse);
-        attachPhoneNumberResponse = attachPhoneNumberRequest.attachPhoneNumber(attachPhoneNumber);
+        AttachPhoneNumberDataSet attachPhoneNumberDataSet = app.generate().randomAttachPhoneNumber(addAccountResponse);
+        attachPhoneNumberResponse = attachPhoneNumberRequest.attachPhoneNumber(attachPhoneNumberDataSet);
 
-        ControlSms controlSms = app.generate().randomControlSms(addAccountResponse,attachPhoneNumberResponse);
-        universalResponse = controlSmsRequest.ControlSms(controlSms);
+        ControlSmsDataSet controlSmsDataSet = app.generate().randomControlSms(addAccountResponse,attachPhoneNumberResponse);
+        universalResponse = controlSmsRequest.ControlSms(controlSmsDataSet);
 
         ReceivedSmsDataSet receivedSmsDataSet = app.generate().randomReceivedSmsDataSet(attachPhoneNumberResponse);
         String message = app.generate().randomReceivedSmsDataSet(attachPhoneNumberResponse, receivedSmsDataSet);

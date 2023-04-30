@@ -73,16 +73,16 @@ public class Generator extends HelperBase {
         return random.nextInt(max - min) + min;
     }
 
-    public User randomUser() {
-        return new User().withEmail(app.generate().randomEmail())
+    public UserDataSet randomUser() {
+        return new UserDataSet().withEmail(app.generate().randomEmail())
                 .withName(app.generate().randomAccountName(15))
                 .withPassword(app.generate().simplePassword)
                 .withApiKey(app.getProperty("papi.admin_api-key"))
                 .withActive(true);
     }
 
-    public AccountDocument randomAccountDocument(AddAccountResponse addAccountResponse) {
-        return new AccountDocument().withAccountId(addAccountResponse.account_id())
+    public AccountDocumentDataSet randomAccountDocument(AddAccountResponse addAccountResponse) {
+        return new AccountDocumentDataSet().withAccountId(addAccountResponse.account_id())
                 .withApiKey(app.getProperty("papi.admin_api-key")).withLegalStatus("individual")
                 .withEsiaVerified(true).withIndividualPassportSeries(1222)
                 .withIndividualPassportNumber(555667)
@@ -94,16 +94,16 @@ public class Generator extends HelperBase {
                 .withDocumentDeliveryAddress("sadasdasdasd").withEmail("mail123123dd@mail.ru");
     }
 
-    public AttachPhoneNumber randomAttachPhoneNumber(AddAccountResponse addAccountResponse) {
-        return new AttachPhoneNumber().withAccountId(addAccountResponse.account_id())
+    public AttachPhoneNumberDataSet randomAttachPhoneNumber(AddAccountResponse addAccountResponse) {
+        return new AttachPhoneNumberDataSet().withAccountId(addAccountResponse.account_id())
                                       .withApiKey(addAccountResponse.api_key())
                                       .withCountryCode("BE")
                                       .withPhoneRegionId("20560")
                                       .withPhoneCategoryName("MOBILE");
     }
 
-    public ControlSms randomControlSms(AddAccountResponse addAccountResponse, AttachPhoneNumberResponse attachPhoneNumberResponse) {
-        return new ControlSms().withAccountId(addAccountResponse.account_id())
+    public ControlSmsDataSet randomControlSms(AddAccountResponse addAccountResponse, AttachPhoneNumberResponse attachPhoneNumberResponse) {
+        return new ControlSmsDataSet().withAccountId(addAccountResponse.account_id())
                 .withApiKey(addAccountResponse.api_key())
                 .withPhoneNumber(attachPhoneNumberResponse.getPhone_numbers().get(0).getPhone_number())
                 .withCommand("enable");

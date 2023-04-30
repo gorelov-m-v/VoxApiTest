@@ -5,7 +5,7 @@ import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
 import io.restassured.config.RestAssuredConfig;
 import org.apache.http.params.CoreConnectionPNames;
-import requests.model.AttachPhoneNumber;
+import requests.model.AttachPhoneNumberDataSet;
 import response.accounts.AttachPhoneNumberResponse;
 import static io.restassured.RestAssured.given;
 
@@ -18,20 +18,20 @@ public class AttachPhoneNumberRequest {
                     .setParam(CoreConnectionPNames.CONNECTION_TIMEOUT, 15000)
                     .setParam(CoreConnectionPNames.SO_TIMEOUT, 15000));
 
-    public AttachPhoneNumberResponse attachPhoneNumber(AttachPhoneNumber attachPhoneNumber) {
+    public AttachPhoneNumberResponse attachPhoneNumber(AttachPhoneNumberDataSet attachPhoneNumberDataSet) {
         return given()
                 .config(config)
                 .header("Content-type", "application/json")
                 // Mandatory
-                .queryParam("account_id", attachPhoneNumber.getAccountId())
-                .queryParam("api_key", attachPhoneNumber.getApiKey())
-                .queryParam("country_code", attachPhoneNumber.getCountryCode())
-                .queryParam("phone_category_name", attachPhoneNumber.getPhoneCategoryName())
-                .queryParam("phone_region_id", attachPhoneNumber.getPhoneRegionId())
+                .queryParam("account_id", attachPhoneNumberDataSet.getAccountId())
+                .queryParam("api_key", attachPhoneNumberDataSet.getApiKey())
+                .queryParam("country_code", attachPhoneNumberDataSet.getCountryCode())
+                .queryParam("phone_category_name", attachPhoneNumberDataSet.getPhoneCategoryName())
+                .queryParam("phone_region_id", attachPhoneNumberDataSet.getPhoneRegionId())
                 // Optional
 //                .queryParam("phone_number", attachPhoneNumber.getPhoneNumber())
-                .queryParam("country_state", attachPhoneNumber.getCountryState())
-                .queryParam("regulation_address_id", attachPhoneNumber.getRegulationAddressId())
+                .queryParam("country_state", attachPhoneNumberDataSet.getCountryState())
+                .queryParam("regulation_address_id", attachPhoneNumberDataSet.getRegulationAddressId())
 
                 .when()
                 .log()

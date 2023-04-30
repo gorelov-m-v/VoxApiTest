@@ -5,7 +5,7 @@ import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
 import io.restassured.config.RestAssuredConfig;
 import org.apache.http.params.CoreConnectionPNames;
-import requests.model.ControlSms;
+import requests.model.ControlSmsDataSet;
 import response.accounts.UniversalResponse;
 import static io.restassured.RestAssured.given;
 
@@ -17,15 +17,15 @@ public class ControlSmsRequest {
                     .setParam(CoreConnectionPNames.CONNECTION_TIMEOUT, 2000)
                     .setParam(CoreConnectionPNames.SO_TIMEOUT, 15000));
 
-    public UniversalResponse ControlSms(ControlSms controlSms) {
+    public UniversalResponse ControlSms(ControlSmsDataSet controlSmsDataSet) {
         return given()
                 .config(config)
                 .header("Content-type", "application/json")
                 // Mandatory
-                .queryParam("account_id", controlSms.getAccountId())
-                .queryParam("api_key", controlSms.getApiKey())
-                .queryParam("phone_number", controlSms.getPhoneNumber())
-                .queryParam("command", controlSms.getCommand())
+                .queryParam("account_id", controlSmsDataSet.getAccountId())
+                .queryParam("api_key", controlSmsDataSet.getApiKey())
+                .queryParam("phone_number", controlSmsDataSet.getPhoneNumber())
+                .queryParam("command", controlSmsDataSet.getCommand())
 
                 .when()
                 .log()

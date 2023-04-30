@@ -1,9 +1,6 @@
 package requests.model;
 
-import java.time.LocalDate;
-import java.util.Date;
-
-public class AccountDocument {
+public class AccountDocumentDataSet {
 
     // Mandatory for 'INDIVIDUAL'
     private int account_id;
@@ -64,59 +61,59 @@ public class AccountDocument {
         return email;
     }
 
-    public AccountDocument withAccountId(int account_id) {
+    public AccountDocumentDataSet withAccountId(int account_id) {
         this.account_id = account_id;
         return this;
     }
-    public AccountDocument withApiKey(String api_key) {
+    public AccountDocumentDataSet withApiKey(String api_key) {
         this.api_key = api_key;
         return this;
     }
-    public AccountDocument withLegalStatus(String legal_status) {
+    public AccountDocumentDataSet withLegalStatus(String legal_status) {
         this.legal_status = legal_status;
         return this;
     }
-    public AccountDocument withEsiaVerified(boolean esia_verified) {
+    public AccountDocumentDataSet withEsiaVerified(boolean esia_verified) {
         this.esia_verified = esia_verified;
         return this;
     }
-    public AccountDocument withIndividualPassportSeries(int individual_passport_series) {
+    public AccountDocumentDataSet withIndividualPassportSeries(int individual_passport_series) {
         this.individual_passport_series = individual_passport_series;
         return this;
     }
-    public AccountDocument withIndividualPassportNumber(int individual_passport_number) {
+    public AccountDocumentDataSet withIndividualPassportNumber(int individual_passport_number) {
         this.individual_passport_number = individual_passport_number;
         return this;
     }
-    public AccountDocument withIndividualPassportIssuedBy(String individual_passport_issued_by) {
+    public AccountDocumentDataSet withIndividualPassportIssuedBy(String individual_passport_issued_by) {
         this.individual_passport_issued_by = individual_passport_issued_by;
         return this;
     }
-    public AccountDocument withIndividualPassportIssueDate(String individual_passport_issue_date) {
+    public AccountDocumentDataSet withIndividualPassportIssueDate(String individual_passport_issue_date) {
         this.individual_passport_issue_date = individual_passport_issue_date;
         return this;
     }
-    public AccountDocument withIndividualFullName(String individual_full_name) {
+    public AccountDocumentDataSet withIndividualFullName(String individual_full_name) {
         this.individual_full_name = individual_full_name;
         return this;
     }
-    public AccountDocument withIndividualBirthDate(String individual_birth_date) {
+    public AccountDocumentDataSet withIndividualBirthDate(String individual_birth_date) {
         this.individual_birth_date = individual_birth_date;
         return this;
     }
-    public AccountDocument withIndividualRegistrationAddress(String individual_registration_address) {
+    public AccountDocumentDataSet withIndividualRegistrationAddress(String individual_registration_address) {
         this.individual_registration_address = individual_registration_address;
         return this;
     }
-    public AccountDocument withIndividualPhoneNumber(String individual_phone_number) {
+    public AccountDocumentDataSet withIndividualPhoneNumber(String individual_phone_number) {
         this.individual_phone_number = individual_phone_number;
         return this;
     }
-    public AccountDocument withDocumentDeliveryAddress(String document_delivery_address) {
+    public AccountDocumentDataSet withDocumentDeliveryAddress(String document_delivery_address) {
         this.document_delivery_address = document_delivery_address;
         return this;
     }
-    public AccountDocument withEmail(String email) {
+    public AccountDocumentDataSet withEmail(String email) {
         this.email = email;
         return this;
     }
