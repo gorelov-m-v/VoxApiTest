@@ -3,6 +3,7 @@ package appmanager;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
 import requests.model.AccountDocument;
+import requests.model.AttachPhoneNumber;
 import requests.model.User;
 import response.accounts.AddAccountResponse;
 
@@ -95,6 +96,14 @@ public class Generator extends HelperBase {
                 .withIndividualRegistrationAddress("dasdasd")
                 .withIndividualPhoneNumber("79032530778")
                 .withDocumentDeliveryAddress("sadasdasdasd").withEmail("mail123123dd@mail.ru");
+    }
+
+    public AttachPhoneNumber randomAttachPhoneNumber(AddAccountResponse addAccountResponse) {
+        return new AttachPhoneNumber().withAccountId(addAccountResponse.account_id())
+                                      .withApiKey(addAccountResponse.api_key())
+                                      .withCountryCode("BE")
+                                      .withPhoneRegionId("20560")
+                                      .withPhoneCategoryName("MOBILE");
     }
 
 }

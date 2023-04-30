@@ -17,12 +17,6 @@ public class AddAccountTests extends TestBase {
     AddAccountResponse response;
     User user;
 
-    @BeforeMethod
-    public void setUp() throws IOException {
-        app.init();
-        RestAssured.baseURI = app.getProperty("papi.host");
-    }
-
     @DataProvider(name = "mandatoryParams")
     public Object[][] mandatoryParamsSet() {
 
