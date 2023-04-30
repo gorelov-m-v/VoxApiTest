@@ -108,26 +108,28 @@ public class Generator extends HelperBase {
                 .withPhoneNumber(attachPhoneNumberResponse.getPhone_numbers().get(0).getPhone_number())
                 .withCommand("enable");
     }
+    public ReceivedSmsDataSet randomReceivedSmsDataSet(AttachPhoneNumberResponse attachPhoneNumberResponse) {
+        return new ReceivedSmsDataSet().withSourceNumber(app.generate().randomString(8))
+                .withDestinationNumber(attachPhoneNumberResponse.getPhone_numbers().get(0).getPhone_number())
+                .withUuid(Collections.singletonList(UUID.randomUUID().toString())).withFragmentsCount(1)
+                .withReceivedDate(LocalDate.now());
+    }
 
-    public String randomReceivedSmsDataSet(AttachPhoneNumberResponse attachPhoneNumberResponse) {
+    public String randomReceivedSmsDataSet(AttachPhoneNumberResponse attachPhoneNumberResponse, ReceivedSmsDataSet receivedSmsDataSet) {
 
-
-        String message = String.format("{\n" +
+        return String.format("{\n" +
                 "    \"source_number\":\"%s\",\n" +
                 "    \"destination_number\":\"%s\",\n" +
                 "    \"uuid\":[\"%s\"],\n" +
                 "    \"message\":\"%s\",\n" +
                 "    \"fragments_count\":%s,\n" +
                 "    \"received_date\":\"%s\"\n" +
-                "}", app.generate().randomString(8)
-                   , attachPhoneNumberResponse.getPhone_numbers().get(0).getPhone_number()
-                   , UUID.randomUUID()
-                   , app.generate().randomString(15)
-                   , 1
-                   , LocalDate.now());
-
-        return message;
-
+                "}", receivedSmsDataSet.getSourceNumber()
+                   , receivedSmsDataSet.getDestinationNumber()
+                   , receivedSmsDataSet.getUuid()
+                   , receivedSmsDataSet.getMessage()
+                   , receivedSmsDataSet.getFragmentsCount()
+                   , receivedSmsDataSet.getReceivedDate());
     }
 
 }

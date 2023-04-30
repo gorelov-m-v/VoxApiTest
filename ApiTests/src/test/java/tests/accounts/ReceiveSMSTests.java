@@ -42,10 +42,14 @@ public class ReceiveSMSTests extends TestBase{
         ControlSms controlSms = app.generate().randomControlSms(addAccountResponse,attachPhoneNumberResponse);
         universalResponse = controlSmsRequest.ControlSms(controlSms);
 
-        String message = app.generate().randomReceivedSmsDataSet(attachPhoneNumberResponse);
+        ReceivedSmsDataSet receivedSmsDataSet = app.generate().randomReceivedSmsDataSet(attachPhoneNumberResponse);
+        String message = app.generate().randomReceivedSmsDataSet(attachPhoneNumberResponse, receivedSmsDataSet);
+        System.out.println(message);
 
         app.p2p().publish(app.getProperty("rabbitmq.exchange.sms"),
                           app.getProperty("rabbitmq.routing-key.receiveSms"),
                           message);
+
+        System.out.println(app.db().getSmsByUUID(receivedSmsDataSet.getUuid()).getId());
     }
 }

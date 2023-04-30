@@ -1,6 +1,8 @@
 package requests.model;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 public class ReceivedSmsDataSet {
 
@@ -9,7 +11,7 @@ public class ReceivedSmsDataSet {
     private List<String> uuid;
     private String message;
     private int fragments_count;
-    private String received_date;
+    private LocalDate received_date;
 
     public String getSourceNumber() {
         return source_number;
@@ -26,7 +28,7 @@ public class ReceivedSmsDataSet {
     public int getFragmentsCount() {
         return fragments_count;
     }
-    public String getReceivedDate() {
+    public LocalDate getReceivedDate() {
         return received_date;
     }
 
@@ -50,7 +52,7 @@ public class ReceivedSmsDataSet {
         this.fragments_count = fragments_count;
         return this;
     }
-    public ReceivedSmsDataSet withReceivedDate(String received_date) {
+    public ReceivedSmsDataSet withReceivedDate(LocalDate received_date) {
         this.received_date = received_date;
         return this;
     }

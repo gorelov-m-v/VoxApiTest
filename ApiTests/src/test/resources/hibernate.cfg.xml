@@ -24,6 +24,7 @@
         <!-- Annotated entity classes -->
         <mapping class="database.model.Users"/>
         <mapping class="database.model.Currency"/>
+        <mapping class="database.model.SmsHistory"/>
 
     </session-factory>
 </hibernate-configuration>
