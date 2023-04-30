@@ -2,7 +2,6 @@ package http.model.accounts.add;
 
 import http.model.universal.Error;
 import http.model.universal.Errors;
-
 import java.util.List;
 
 // VoxDocs  https://voximplant.com/docs/references/httpapi/accounts#addaccount

@@ -1,9 +1,7 @@
 package database.model;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name="users", schema = "public")

@@ -6,7 +6,6 @@ import java.util.UUID;
 import java.util.concurrent.TimeoutException;
 import com.rabbitmq.client.AMQP.BasicProperties;
 
-
 public class P2PPublisher extends HelperBase{
     public P2PPublisher(ApplicationManager app) {
         super(app);

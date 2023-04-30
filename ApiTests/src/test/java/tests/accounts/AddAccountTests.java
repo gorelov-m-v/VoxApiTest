@@ -7,7 +7,6 @@ import http.model.accounts.add.AddAccountRequest;
 import http.model.accounts.add.AddAccountResponse;
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 public class AddAccountTests extends TestBase {
 
     AddAccountRequest request = new AddAccountRequest();

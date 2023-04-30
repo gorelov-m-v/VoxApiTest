@@ -3,7 +3,6 @@ package tests.accounts;
 import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
-
 import http.model.accounts.add.AddAccountRequest;
 import http.model.accounts.add.UserDataSet;
 import http.model.accounts.setdocument.AccountDocumentDataSet;

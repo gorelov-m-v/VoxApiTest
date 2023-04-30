@@ -5,9 +5,7 @@ import database.model.Users;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
 import java.util.List;
-import java.util.UUID;
 
 public class DbHelper extends HelperBase {
 
