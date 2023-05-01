@@ -8,7 +8,7 @@ import http.model.accounts.setdocument.SetAccountDocumentRequest;
 import http.model.accounts.setdocument.AccountDocumentDataSet;
 import http.model.phonenumbers.attach.AttachPhoneNumberDataSet;
 import http.model.sms.control.ControlSmsDataSet;
-import http.model.accounts.add.UserDataSet;
+import http.model.accounts.add.AddAccountDataSet;
 import http.model.accounts.add.AddAccountResponse;
 import http.model.phonenumbers.attach.AttachPhoneNumberResponse;
 import http.model.accounts.setdocument.SetAccountDocumentResponse;
@@ -27,8 +27,8 @@ public class ControlSmsTests extends TestBase {
 
     @Test
     public void smoke() {
-        UserDataSet requestedUserDataSet = app.generate().randomUser();
-        addAccountResponse = addAccountRequest.addAccount(requestedUserDataSet);
+        AddAccountDataSet requestedAddAccountDataSet = app.generate().randomUser();
+        addAccountResponse = addAccountRequest.addAccount(requestedAddAccountDataSet);
 
         AccountDocumentDataSet accountDocumentDataSet = app.generate().randomAccountDocument(addAccountResponse);
         setDocumentResponse = setDocumentRequest.setAccountDocument(accountDocumentDataSet);

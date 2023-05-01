@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 import http.model.accounts.add.AddAccountRequest;
-import http.model.accounts.add.UserDataSet;
+import http.model.accounts.add.AddAccountDataSet;
 import http.model.accounts.setdocument.AccountDocumentDataSet;
 import http.model.phonenumbers.attach.AttachPhoneNumberDataSet;
 import http.model.phonenumbers.attach.AttachPhoneNumberRequest;
@@ -30,10 +30,10 @@ public class ReceiveSMSTests extends TestBase{
     UniversalResponse universalResponse;
 
     @Test
-    public void smoke() throws IOException, TimeoutException {
+    public void smokeByQueue() throws IOException, TimeoutException {
 
-        UserDataSet requestedUserDataSet = app.generate().randomUser();
-        addAccountResponse = addAccountRequest.addAccount(requestedUserDataSet);
+        AddAccountDataSet requestedAddAccountDataSet = app.generate().randomUser();
+        addAccountResponse = addAccountRequest.addAccount(requestedAddAccountDataSet);
 
         AccountDocumentDataSet accountDocumentDataSet = app.generate().randomAccountDocument(addAccountResponse);
         setDocumentResponse = setDocumentRequest.setAccountDocument(accountDocumentDataSet);

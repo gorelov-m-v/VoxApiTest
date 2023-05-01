@@ -13,7 +13,7 @@ public class ControlSmsRequest {
 
     RestAssuredConfig config = RestAssured.config()
             .httpClient(HttpClientConfig.httpClientConfig()
-                    .setParam(CoreConnectionPNames.CONNECTION_TIMEOUT, 2000)
+                    .setParam(CoreConnectionPNames.CONNECTION_TIMEOUT, 5000)
                     .setParam(CoreConnectionPNames.SO_TIMEOUT, 15000));
 
     public UniversalResponse ControlSms(ControlSmsDataSet controlSmsDataSet) {

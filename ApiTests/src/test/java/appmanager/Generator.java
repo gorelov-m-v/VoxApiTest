@@ -3,7 +3,7 @@ package appmanager;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
 import http.model.accounts.add.AddAccountResponse;
-import http.model.accounts.add.UserDataSet;
+import http.model.accounts.add.AddAccountDataSet;
 import http.model.accounts.setdocument.AccountDocumentDataSet;
 import http.model.phonenumbers.attach.AttachPhoneNumberDataSet;
 import http.model.phonenumbers.attach.AttachPhoneNumberResponse;
@@ -76,8 +76,8 @@ public class Generator extends HelperBase {
         return random.nextInt(max - min) + min;
     }
 
-    public UserDataSet randomUser() {
-        return new UserDataSet().withEmail(app.generate().randomEmail())
+    public AddAccountDataSet randomUser() {
+        return new AddAccountDataSet().withEmail(app.generate().randomEmail())
                 .withName(app.generate().randomAccountName(15))
                 .withPassword(app.generate().simplePassword)
                 .withApiKey(app.getProperty("papi.admin_api-key"))

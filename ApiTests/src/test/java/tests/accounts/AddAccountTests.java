@@ -1,6 +1,6 @@
 package tests.accounts;
 
-import http.model.accounts.add.UserDataSet;
+import http.model.accounts.add.AddAccountDataSet;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import http.model.accounts.add.AddAccountRequest;
@@ -11,38 +11,38 @@ public class AddAccountTests extends TestBase {
 
     AddAccountRequest request = new AddAccountRequest();
     AddAccountResponse response;
-    UserDataSet userDataSet;
+    AddAccountDataSet addAccountDataSet;
 
     @DataProvider(name = "mandatoryParams")
     public Object[][] mandatoryParamsSet() {
 
-        return new Object[][]{{ new UserDataSet().withEmail(app.generate().randomEmail())
+        return new Object[][]{{ new AddAccountDataSet().withEmail(app.generate().randomEmail())
                                           .withName(app.generate().randomAccountName(15))
                                           .withPassword(app.generate().simplePassword).withApiKey(app.getProperty("papi.admin_api-key"))
                                           .withActive(true), 1},
-                              { new UserDataSet().withName(app.generate().randomAccountName(15))
+                              { new AddAccountDataSet().withName(app.generate().randomAccountName(15))
                                           .withPassword(app.generate().simplePassword).withApiKey(app.getProperty("papi.admin_api-key"))
                                           .withActive(true), 0},
-                              { new UserDataSet().withEmail(app.generate().randomEmail())
+                              { new AddAccountDataSet().withEmail(app.generate().randomEmail())
                                           .withPassword(app.generate().simplePassword).withApiKey(app.getProperty("papi.admin_api-key"))
                                           .withActive(true), 0},
-                              { new UserDataSet().withEmail(app.generate().randomEmail())
+                              { new AddAccountDataSet().withEmail(app.generate().randomEmail())
                                           .withName(app.generate().randomAccountName(15))
                                           .withApiKey(app.getProperty("papi.admin_api-key"))
                                           .withActive(true), 0},
-                              { new UserDataSet().withEmail(app.generate().randomEmail())
+                              { new AddAccountDataSet().withEmail(app.generate().randomEmail())
                                           .withName(app.generate().randomAccountName(15))
                                           .withPassword(app.generate().simplePassword)
                                           .withActive(true), 0},
-                              { new UserDataSet().withEmail(app.generate().randomEmail())
+                              { new AddAccountDataSet().withEmail(app.generate().randomEmail())
                                           .withName(app.generate().randomAccountName(15))
                                           .withPassword(app.generate().simplePassword).withApiKey(app.getProperty("papi.admin_api-key")), 0}};
     }
 
     @Test(dataProvider = "mandatoryParams")
-    public void mandatoryParamsTest(UserDataSet userDataSet, int result) {
+    public void mandatoryParamsTest(AddAccountDataSet addAccountDataSet, int result) {
 
-        response = request.addAccount(userDataSet);
+        response = request.addAccount(addAccountDataSet);
 
         assertThat(response.result()).isEqualTo(result);
     }
@@ -65,16 +65,16 @@ public class AddAccountTests extends TestBase {
     @Test(dataProvider = "accountNameLength")
     public void accountNameLengthTest(int accountNameLength) {
 
-        userDataSet = new UserDataSet().withEmail(app.generate().randomEmail()).withName(app.generate().randomAccountName(accountNameLength))
+        addAccountDataSet = new AddAccountDataSet().withEmail(app.generate().randomEmail()).withName(app.generate().randomAccountName(accountNameLength))
                          .withPassword(app.generate().simplePassword).withActive(true).withApiKey(app.getProperty("papi.admin_api-key"));
 
-        response = request.addAccount(userDataSet);
+        response = request.addAccount(addAccountDataSet);
 
         if (response.result() == 1) {
             assertThat(response.account_id()).isNotNull();
             assertThat(response.api_key()).isNotNull();
             assertThat(response.billing_account_id()).isNotNull();
-            assertThat(response.active()).isEqualTo(userDataSet.active());
+            assertThat(response.active()).isEqualTo(addAccountDataSet.active());
         } else {
             assertThat(response.getError().getCode()).isEqualTo(113);
             assertThat(response.getError().getMsg()).isEqualTo("Account name must be at least 5 and up to 20 characters long.");
@@ -94,18 +94,18 @@ public class AddAccountTests extends TestBase {
     @Test(dataProvider = "passwordLength")
     public void passwordLengthTest(int passwordLength) {
 
-        userDataSet = new UserDataSet().withEmail(app.generate().randomEmail()).withName(app.generate().randomAccountName(15))
+        addAccountDataSet = new AddAccountDataSet().withEmail(app.generate().randomEmail()).withName(app.generate().randomAccountName(15))
                 .withPassword(app.generate().randomPassword(passwordLength)).withActive(true).withApiKey(app.getProperty("papi.admin_api-key"));
 
-        response = request.addAccount(userDataSet);
+        response = request.addAccount(addAccountDataSet);
 
         if (response.result() == 1) {
             assertThat(response.account_id()).isNotNull();
             assertThat(response.api_key()).isNotNull();
             assertThat(response.billing_account_id()).isNotNull();
-            assertThat(response.active()).isEqualTo(userDataSet.active());
+            assertThat(response.active()).isEqualTo(addAccountDataSet.active());
         } else {
-            System.out.println(userDataSet.getAccount_password());
+            System.out.println(addAccountDataSet.getAccount_password());
             assertThat(response.getError().getMsg()).isEqualTo("Password should be at least 8 characters long and contain uppercase characters (A-Z), lowercase characters (a-z), digits (0-9) and special characters (~!@#$%^&*_-+=`|\\(){}[]:;\"'<>,.?/)");
             assertThat(response.getError().getCode()).isEqualTo(464);
 
@@ -124,13 +124,13 @@ public class AddAccountTests extends TestBase {
 
     @Test(dataProvider = "currenciesSet")
     public void currenciesSetTests(String currency) {
-        userDataSet = new UserDataSet().withEmail(app.generate().randomEmail()).withName(app.generate().randomAccountName(15))
+        addAccountDataSet = new AddAccountDataSet().withEmail(app.generate().randomEmail()).withName(app.generate().randomAccountName(15))
                          .withPassword(app.generate().simplePassword).withActive(true)
                          .withCurrency(currency).withApiKey(app.getProperty("papi.admin_api-key"));
 
-        response = request.addAccount(userDataSet);
+        response = request.addAccount(addAccountDataSet);
 
-        assertThat(app.db().getUserByName(userDataSet.accountName().toLowerCase()).getCurrency().getCode()).isEqualTo(userDataSet.getCurrency());
+        assertThat(app.db().getUserByName(addAccountDataSet.accountName().toLowerCase()).getCurrency().getCode()).isEqualTo(addAccountDataSet.getCurrency());
 //        System.out.println(app.db().getUserByName(user.accountName().toLowerCase()).getPassword());
 //        System.out.println(app.db().getUserByName(user.accountName().toLowerCase()).getActivated());
 //        LocalDate now = now();
