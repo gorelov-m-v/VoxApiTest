@@ -4,7 +4,6 @@ import http.model.sms.received.ReceivedSMSRequest;
 import http.model.sms.received.ReceiverSmsHTTPDataSet;
 import org.testng.annotations.Test;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import http.model.accounts.add.AddAccountRequest;
 import http.model.accounts.add.AddAccountDataSet;
@@ -19,7 +18,6 @@ import http.model.phonenumbers.attach.AttachPhoneNumberResponse;
 import http.model.accounts.setdocument.SetAccountDocumentResponse;
 import http.model.sms.received.ReceivedSmsMQDataSet;
 import http.model.universal.UniversalResponse;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.testng.Assert.assertNotNull;
 
@@ -62,7 +60,7 @@ public class ReceiveSMSTests extends TestBase{
     }
 
     @Test
-    public void smokeByHTTP() throws IOException, TimeoutException, InterruptedException {
+    public void smokeByHTTP() throws InterruptedException {
 
         AddAccountDataSet requestedAddAccountDataSet = app.generate().randomUser();
         addAccountResponse = addAccountRequest.addAccount(requestedAddAccountDataSet);
