@@ -6,6 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class DbHelper extends HelperBase {
 
@@ -30,6 +32,19 @@ public class DbHelper extends HelperBase {
         session.beginTransaction();
 
         SmsHistory result = (SmsHistory) session.createQuery(String.format("from database.model.SmsHistory where external_id = '{%s}'", uuid)).uniqueResult();
+
+        session.getTransaction().commit();
+        session.close();
+
+        return result;
+    }
+
+    public List<SmsHistory> getAllSmsHistory() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        List<SmsHistory> result = (List<SmsHistory>) session.createQuery(String.format("from database.model.SmsHistory")).stream().collect(Collectors.toList());
 
         session.getTransaction().commit();
         session.close();

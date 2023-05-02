@@ -37,6 +37,6 @@ public class ControlSmsTests extends TestBase {
         attachPhoneNumberResponse = attachPhoneNumberRequest.attachPhoneNumber(attachPhoneNumberDataSet);
 
         ControlSmsDataSet controlSmsDataSet = app.generate().randomControlSms(addAccountResponse,attachPhoneNumberResponse);
-        universalResponse = controlSmsRequest.ControlSms(controlSmsDataSet);
+        universalResponse = controlSmsRequest.controlSms(controlSmsDataSet);
     }
 }
