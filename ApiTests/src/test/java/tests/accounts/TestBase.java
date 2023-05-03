@@ -10,6 +10,5 @@ public class TestBase {
     @BeforeSuite
     public void setUp() throws Exception {
         app.init();
-        RestAssured.baseURI = app.getProperty("papi.host");
     }
 }

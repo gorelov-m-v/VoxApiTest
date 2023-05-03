@@ -6,6 +6,7 @@ import io.restassured.config.HttpClientConfig;
 import io.restassured.config.RestAssuredConfig;
 import org.apache.http.params.CoreConnectionPNames;
 import static io.restassured.RestAssured.given;
+import static tests.accounts.TestBase.app;
 
 // VoxDocs  https://voximplant.com/docs/references/httpapi/accounts#addaccount
 public class AddAccountRequest {
@@ -16,6 +17,7 @@ public class AddAccountRequest {
                     .setParam(CoreConnectionPNames.CONNECTION_TIMEOUT, 2000)
                     .setParam(CoreConnectionPNames.SO_TIMEOUT, 2000));
     public AddAccountResponse addAccount(AddAccountDataSet addAccountDataSet) {
+        RestAssured.baseURI = app.getProperty("papi.host");
         return given()
                     .config(config)
                     .header("Content-type", "application/json")

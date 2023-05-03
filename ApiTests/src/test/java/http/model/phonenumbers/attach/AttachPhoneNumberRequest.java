@@ -6,6 +6,7 @@ import io.restassured.config.HttpClientConfig;
 import io.restassured.config.RestAssuredConfig;
 import org.apache.http.params.CoreConnectionPNames;
 import static io.restassured.RestAssured.given;
+import static tests.accounts.TestBase.app;
 
 public class AttachPhoneNumberRequest {
 
@@ -17,6 +18,7 @@ public class AttachPhoneNumberRequest {
                     .setParam(CoreConnectionPNames.SO_TIMEOUT, 15000));
 
     public AttachPhoneNumberResponse attachPhoneNumber(AttachPhoneNumberDataSet attachPhoneNumberDataSet) {
+        RestAssured.baseURI = app.getProperty("papi.host");
         return given()
                 .config(config)
                 .header("Content-type", "application/json")
