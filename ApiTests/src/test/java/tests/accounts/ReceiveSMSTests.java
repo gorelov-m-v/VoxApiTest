@@ -45,7 +45,7 @@ public class ReceiveSMSTests extends TestBase{
         AttachPhoneNumberDataSet attachPhoneNumberDataSet = app.generate().randomAttachPhoneNumber(addAccountResponse);
         attachPhoneNumberResponse = attachPhoneNumberRequest.attachPhoneNumber(attachPhoneNumberDataSet);
 
-        ControlSmsDataSet controlSmsDataSet = app.generate().randomControlSms(addAccountResponse,attachPhoneNumberResponse);
+        ControlSmsDataSet controlSmsDataSet = app.generate().randomControlSmsDataSet(addAccountResponse,attachPhoneNumberResponse);
         universalResponse = controlSmsRequest.controlSms(controlSmsDataSet);
 
         ReceivedSmsMQDataSet receivedSmsMQDataSet = app.generate().randomReceivedSmsMQDataSet(attachPhoneNumberResponse);
@@ -72,7 +72,7 @@ public class ReceiveSMSTests extends TestBase{
         attachPhoneNumberResponse = attachPhoneNumberRequest.attachPhoneNumber(attachPhoneNumberDataSet);
 
         ControlSmsDataSet controlSmsDataSet = app.generate()
-                .randomControlSms(addAccountResponse,attachPhoneNumberResponse);
+                .randomControlSmsDataSet(addAccountResponse,attachPhoneNumberResponse);
         universalResponse = controlSmsRequest.controlSms(controlSmsDataSet);
 
         ReceiverSmsHTTPDataSet receiverSmsHTTPDataSet = app.generate()

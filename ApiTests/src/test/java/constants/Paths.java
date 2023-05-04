@@ -9,6 +9,7 @@ public class Paths {
     public String setAccountDocument = "/platform_api/SetAccountDocument";
     public String attachPhoneNumber = "/platform_api/AttachPhoneNumber";
     public String controlSms = "/platform_api/ControlSms";
+    public String sendSmsMessage = "/platform_api/SendSmsMessage";
 
 
     // Sms_gw

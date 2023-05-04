@@ -1,21 +1,23 @@
 package tests.accounts;
 
-import org.testng.annotations.Test;
-import http.model.accounts.add.AddAccountRequest;
-import http.model.phonenumbers.attach.AttachPhoneNumberRequest;
-import http.model.sms.control.ControlSmsRequest;
-import http.model.accounts.setdocument.SetAccountDocumentRequest;
-import http.model.accounts.setdocument.AccountDocumentDataSet;
-import http.model.phonenumbers.attach.AttachPhoneNumberDataSet;
-import http.model.sms.control.ControlSmsDataSet;
 import http.model.accounts.add.AddAccountDataSet;
+import http.model.accounts.add.AddAccountRequest;
 import http.model.accounts.add.AddAccountResponse;
-import http.model.phonenumbers.attach.AttachPhoneNumberResponse;
+import http.model.accounts.setdocument.AccountDocumentDataSet;
+import http.model.accounts.setdocument.SetAccountDocumentRequest;
 import http.model.accounts.setdocument.SetAccountDocumentResponse;
+import http.model.phonenumbers.attach.AttachPhoneNumberDataSet;
+import http.model.phonenumbers.attach.AttachPhoneNumberRequest;
+import http.model.phonenumbers.attach.AttachPhoneNumberResponse;
+import http.model.sms.control.ControlSmsDataSet;
+import http.model.sms.control.ControlSmsRequest;
+import http.model.sms.send.SendSmsMessageDataSet;
+import http.model.sms.send.SendSmsMessageRequest;
+import http.model.sms.send.SendSmsMessageResponse;
 import http.model.universal.UniversalResponse;
+import org.testng.annotations.Test;
 
-public class ControlSmsTests extends TestBase {
-
+public class SendSmsMessageTests extends TestBase {
     AddAccountRequest addAccountRequest = new AddAccountRequest();
     AddAccountResponse addAccountResponse;
     SetAccountDocumentRequest setDocumentRequest = new SetAccountDocumentRequest();
@@ -24,9 +26,11 @@ public class ControlSmsTests extends TestBase {
     AttachPhoneNumberResponse attachPhoneNumberResponse;
     ControlSmsRequest controlSmsRequest = new ControlSmsRequest();
     UniversalResponse universalResponse;
+    SendSmsMessageRequest sendSmsMessageRequest = new SendSmsMessageRequest();
+    SendSmsMessageResponse sendSmsMessageResponse;
 
     @Test
-    public void smokeContolSms() {
+    public void sendSmsMessageSmoke() {
         AddAccountDataSet requestedAddAccountDataSet = app.generate().randomUser();
         addAccountResponse = addAccountRequest.addAccount(requestedAddAccountDataSet);
 
@@ -38,5 +42,10 @@ public class ControlSmsTests extends TestBase {
 
         ControlSmsDataSet controlSmsDataSet = app.generate().randomControlSmsDataSet(addAccountResponse,attachPhoneNumberResponse);
         universalResponse = controlSmsRequest.controlSms(controlSmsDataSet);
+
+        SendSmsMessageDataSet sendSmsMessageDataSet
+                = app.generate().randomSendSmsMessageDataSet(addAccountResponse, attachPhoneNumberResponse);
+
+        sendSmsMessageResponse = sendSmsMessageRequest.sendSmsMessage(sendSmsMessageDataSet);
     }
 }

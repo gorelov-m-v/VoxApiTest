@@ -1,6 +1,7 @@
 package appmanager;
 
 import http.model.sms.received.ReceiverSmsHTTPDataSet;
+import http.model.sms.send.SendSmsMessageDataSet;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
 import http.model.accounts.add.AddAccountResponse;
@@ -110,7 +111,7 @@ public class Generator extends HelperBase {
                                       .withPhoneCategoryName("MOBILE");
     }
 
-    public ControlSmsDataSet randomControlSms(AddAccountResponse addAccountResponse, AttachPhoneNumberResponse attachPhoneNumberResponse) {
+    public ControlSmsDataSet randomControlSmsDataSet(AddAccountResponse addAccountResponse, AttachPhoneNumberResponse attachPhoneNumberResponse) {
         return new ControlSmsDataSet().withAccountId(addAccountResponse.account_id())
                 .withApiKey(addAccountResponse.api_key())
                 .withPhoneNumber(attachPhoneNumberResponse.getPhone_numbers().get(0).getPhone_number())
@@ -146,5 +147,16 @@ public class Generator extends HelperBase {
         return new ReceiverSmsHTTPDataSet().withSrcNumber(app.generate().randomString(8))
                 .withDstNumber(attachPhoneNumberResponse.getPhone_numbers().get(0).getPhone_number())
                 .withContent(app.generate().randomString(20));
+    }
+
+    public SendSmsMessageDataSet randomSendSmsMessageDataSet(AddAccountResponse addAccountResponse,
+                                                             AttachPhoneNumberResponse attachPhoneNumberResponse) {
+        return new SendSmsMessageDataSet()
+                .withAccountId(addAccountResponse.account_id())
+                .withApiKey(addAccountResponse.api_key())
+                .withSource(attachPhoneNumberResponse.getPhone_numbers().get(0).getPhone_number())
+                .withDestination("32466902107")
+                .withSmsBody(app.generate().randomString(20))
+                .withStoreBody(true);
     }
 }
