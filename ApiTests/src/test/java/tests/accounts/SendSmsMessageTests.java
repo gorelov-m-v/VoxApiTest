@@ -17,6 +17,8 @@ import http.model.sms.send.SendSmsMessageResponse;
 import http.model.universal.UniversalResponse;
 import org.testng.annotations.Test;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 public class SendSmsMessageTests extends TestBase {
     AddAccountRequest addAccountRequest = new AddAccountRequest();
     AddAccountResponse addAccountResponse;
@@ -30,7 +32,7 @@ public class SendSmsMessageTests extends TestBase {
     SendSmsMessageResponse sendSmsMessageResponse;
 
     @Test
-    public void sendSmsMessageSmoke() {
+    public void sendSmsMessageSmoke() throws InterruptedException {
         AddAccountDataSet requestedAddAccountDataSet = app.generate().randomUser();
         addAccountResponse = addAccountRequest.addAccount(requestedAddAccountDataSet);
 
@@ -46,6 +48,10 @@ public class SendSmsMessageTests extends TestBase {
         SendSmsMessageDataSet sendSmsMessageDataSet
                 = app.generate().randomSendSmsMessageDataSet(addAccountResponse, attachPhoneNumberResponse);
 
+        int before = app.db().getAllSmsHistory().size();
         sendSmsMessageResponse = sendSmsMessageRequest.sendSmsMessage(sendSmsMessageDataSet);
+        int after = app.db().getAllSmsHistory().size();
+
+        assertThat(after).isEqualTo(before + 1);
     }
 }
