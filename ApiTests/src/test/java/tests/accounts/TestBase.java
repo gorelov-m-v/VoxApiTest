@@ -1,7 +1,6 @@
 package tests.accounts;
 
 import appmanager.ApplicationManager;
-import io.restassured.RestAssured;
 import org.testng.annotations.BeforeSuite;
 
 public class TestBase {

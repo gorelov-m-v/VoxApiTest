@@ -27,6 +27,8 @@ public class Users {
     @OneToOne
     @JoinColumn(name = "currency_id")
     private Currency currency;
+    @Column(name = "is_credit")
+    private boolean isCredit;
 
     public int getId() {
         return id;
@@ -57,5 +59,8 @@ public class Users {
     }
     public Currency getCurrency() {
         return currency;
+    }
+    public boolean isCredit() {
+        return isCredit;
     }
 }

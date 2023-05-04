@@ -15,7 +15,8 @@ public class DbHelper extends HelperBase {
     }
     private final SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 
-    public Users getUserByName(String name) {
+    public Users getUserByName(String name) throws InterruptedException {
+        TimeUnit.SECONDS.sleep(2);
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         Users result = session.createQuery(String.format("from database.model.Users where username = '%s'", name), Users.class).uniqueResult();

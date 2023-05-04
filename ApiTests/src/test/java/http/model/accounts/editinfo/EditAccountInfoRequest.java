@@ -23,6 +23,7 @@ public class EditAccountInfoRequest {
         given()
                 .config(config)
                 .header("Content-type", "application/json")
+                .header("Authorization", "Bearer " + app.getProperty("bo.envoy.bearer_token"))
                 // Mandatory
                 .body(editAccountInfoDataSet)
 

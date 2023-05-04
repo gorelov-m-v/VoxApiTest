@@ -11,7 +11,6 @@ public class AddAccountTests extends TestBase {
 
     AddAccountRequest request = new AddAccountRequest();
     AddAccountResponse response;
-    AddAccountDataSet addAccountDataSet;
 
     @DataProvider(name = "mandatoryParams")
     public Object[][] mandatoryParamsSet() {
@@ -65,7 +64,7 @@ public class AddAccountTests extends TestBase {
     @Test(dataProvider = "accountNameLength")
     public void accountNameLengthTest(int accountNameLength) {
 
-        addAccountDataSet = new AddAccountDataSet().withEmail(app.generate().randomEmail()).withName(app.generate().randomAccountName(accountNameLength))
+        AddAccountDataSet addAccountDataSet = new AddAccountDataSet().withEmail(app.generate().randomEmail()).withName(app.generate().randomAccountName(accountNameLength))
                          .withPassword(app.generate().simplePassword).withActive(true).withApiKey(app.getProperty("papi.admin_api-key"));
 
         response = request.addAccount(addAccountDataSet);
@@ -94,7 +93,7 @@ public class AddAccountTests extends TestBase {
     @Test(dataProvider = "passwordLength")
     public void passwordLengthTest(int passwordLength) {
 
-        addAccountDataSet = new AddAccountDataSet().withEmail(app.generate().randomEmail()).withName(app.generate().randomAccountName(15))
+        AddAccountDataSet addAccountDataSet = new AddAccountDataSet().withEmail(app.generate().randomEmail()).withName(app.generate().randomAccountName(15))
                 .withPassword(app.generate().randomPassword(passwordLength)).withActive(true).withApiKey(app.getProperty("papi.admin_api-key"));
 
         response = request.addAccount(addAccountDataSet);
@@ -123,17 +122,13 @@ public class AddAccountTests extends TestBase {
     }
 
     @Test(dataProvider = "currenciesSet")
-    public void currenciesSetTests(String currency) {
-        addAccountDataSet = new AddAccountDataSet().withEmail(app.generate().randomEmail()).withName(app.generate().randomAccountName(15))
+    public void currenciesSetTests(String currency) throws InterruptedException {
+        AddAccountDataSet addAccountDataSet = new AddAccountDataSet().withEmail(app.generate().randomEmail()).withName(app.generate().randomAccountName(15))
                          .withPassword(app.generate().simplePassword).withActive(true)
                          .withCurrency(currency).withApiKey(app.getProperty("papi.admin_api-key"));
 
         response = request.addAccount(addAccountDataSet);
 
         assertThat(app.db().getUserByName(addAccountDataSet.accountName().toLowerCase()).getCurrency().getCode()).isEqualTo(addAccountDataSet.getCurrency());
-//        System.out.println(app.db().getUserByName(user.accountName().toLowerCase()).getPassword());
-//        System.out.println(app.db().getUserByName(user.accountName().toLowerCase()).getActivated());
-//        LocalDate now = now();
-//        System.out.println(now);
     }
 }
