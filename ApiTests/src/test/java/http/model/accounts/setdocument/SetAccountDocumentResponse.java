@@ -1,7 +1,7 @@
 package http.model.accounts.setdocument;
 
-import http.model.universal.Error;
-import http.model.universal.Errors;
+import http.model.universal.dataset.Error;
+import http.model.universal.dataset.Errors;
 import java.util.List;
 
 public class SetAccountDocumentResponse {

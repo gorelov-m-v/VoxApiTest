@@ -1,5 +1,7 @@
 package constants;
 
+import http.model.accounts.add.AddAccountResponse;
+
 public class Paths {
 
     // Papi
@@ -11,4 +13,9 @@ public class Paths {
 
     // Sms_gw
     public String receivedSms = "/sms.runexis";
+
+    // BO envoy
+    public String getEditAccountInfoPath(AddAccountResponse addAccountResponse) {
+        return String.format("/v1/accounts/%s/edit", addAccountResponse.account_id());
+    }
 }

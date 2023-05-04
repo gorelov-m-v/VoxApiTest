@@ -15,7 +15,7 @@ public class AddAccountRequest {
     RestAssuredConfig config = RestAssured.config()
             .httpClient(HttpClientConfig.httpClientConfig()
                     .setParam(CoreConnectionPNames.CONNECTION_TIMEOUT, 2000)
-                    .setParam(CoreConnectionPNames.SO_TIMEOUT, 2000));
+                    .setParam(CoreConnectionPNames.SO_TIMEOUT, 5000));
     public AddAccountResponse addAccount(AddAccountDataSet addAccountDataSet) {
         RestAssured.baseURI = app.getProperty("papi.host");
         return given()

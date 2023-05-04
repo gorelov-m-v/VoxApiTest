@@ -15,7 +15,7 @@ public class AttachPhoneNumberRequest {
     RestAssuredConfig config = RestAssured.config()
             .httpClient(HttpClientConfig.httpClientConfig()
                     .setParam(CoreConnectionPNames.CONNECTION_TIMEOUT, 15000)
-                    .setParam(CoreConnectionPNames.SO_TIMEOUT, 15000));
+                    .setParam(CoreConnectionPNames.SO_TIMEOUT, 30000));
 
     public AttachPhoneNumberResponse attachPhoneNumber(AttachPhoneNumberDataSet attachPhoneNumberDataSet) {
         RestAssured.baseURI = app.getProperty("papi.host");

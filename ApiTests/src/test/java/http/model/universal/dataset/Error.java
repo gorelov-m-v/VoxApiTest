@@ -1,4 +1,4 @@
-package http.model.universal;
+package http.model.universal.dataset;
 
 public class Error {
 
