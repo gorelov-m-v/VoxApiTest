@@ -1,8 +1,10 @@
 package appmanager;
 
+import database.model.Accounts;
 import database.model.SmsHistory;
 import database.model.Users;
 import http.model.accounts.add.AddAccountDataSet;
+import http.model.accounts.add.AddAccountResponse;
 import http.model.sms.received.ReceivedSmsMQDataSet;
 import http.model.sms.send.SendSmsMessageResponse;
 import org.hibernate.Session;
@@ -62,6 +64,20 @@ public class DbHelper extends HelperBase {
 
        SmsHistory result = session.createQuery(String.format("from database.model.SmsHistory where id = '%s'",
                 sendSmsMessageResponse.getMessageId()), SmsHistory.class).uniqueResult();
+
+        session.getTransaction().commit();
+        session.close();
+
+        return result;
+    }
+
+    public Accounts getBillingInfo(AddAccountResponse addAccountResponse) throws InterruptedException {
+        TimeUnit.SECONDS.sleep(2);
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        Accounts result = session.createQuery(String.format("from database.model.Accounts where id = '%s'",
+                addAccountResponse.billing_account_id()), Accounts.class).uniqueResult();
 
         session.getTransaction().commit();
         session.close();

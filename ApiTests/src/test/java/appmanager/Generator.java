@@ -1,5 +1,6 @@
 package appmanager;
 
+import database.model.SmsHistory;
 import http.model.sms.received.ReceiverSmsHTTPDataSet;
 import http.model.sms.send.SendSmsMessageDataSet;
 import org.apache.commons.lang3.RandomUtils;
@@ -127,8 +128,7 @@ public class Generator extends HelperBase {
                 .withMessage(app.generate().randomString(20));
     }
 
-    public String randomReceivedSmsMQDataSet(AttachPhoneNumberResponse attachPhoneNumberResponse, ReceivedSmsMQDataSet receivedSmsMQDataSet) {
-
+    public String randomReceivedSmsMQDataSet(ReceivedSmsMQDataSet receivedSmsMQDataSet) {
         return String.format("{\n" +
                 "    \"source_number\":\"%s\",\n" +
                 "    \"destination_number\":\"%s\",\n" +
@@ -142,6 +142,20 @@ public class Generator extends HelperBase {
                    , receivedSmsMQDataSet.getMessage()
                    , receivedSmsMQDataSet.getFragmentsCount()
                    , receivedSmsMQDataSet.getReceivedDate());
+    }
+
+    public String randomSmsSendingInfoMQDataSet(SmsHistory smsHistory) {
+        return String.format("{\n" +
+                        "    \"message\":\"%s\",\n" +
+                        "    \"transaction_id\":[\"%s\"],\n" +
+                        "    \"uuid\":\"%s\",\n" +
+                        "    \"fragments_count\":%s,\n" +
+                        "    \"code\":%s\n" +
+                        "}", "OK"
+                , app.generate().randomString(9)
+                , smsHistory.getUuid()
+                , 1
+                , 0);
     }
 
     public ReceiverSmsHTTPDataSet randomReceivedSmsHTTPDataSet(AttachPhoneNumberResponse attachPhoneNumberResponse) {

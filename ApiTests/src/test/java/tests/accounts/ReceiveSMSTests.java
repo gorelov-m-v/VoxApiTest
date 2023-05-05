@@ -34,7 +34,7 @@ public class ReceiveSMSTests extends TestBase{
     ReceivedSMSRequest receivedSMSRequest = new ReceivedSMSRequest();
 
     @Test
-    public void smokeByQueue() throws IOException, TimeoutException {
+    public void smokeByQueue() throws IOException, TimeoutException, InterruptedException {
 
         AddAccountDataSet requestedAddAccountDataSet = app.generate().randomUser();
         addAccountResponse = addAccountRequest.addAccount(requestedAddAccountDataSet);
@@ -49,7 +49,7 @@ public class ReceiveSMSTests extends TestBase{
         universalResponse = controlSmsRequest.controlSms(controlSmsDataSet);
 
         ReceivedSmsMQDataSet receivedSmsMQDataSet = app.generate().randomReceivedSmsMQDataSet(attachPhoneNumberResponse);
-        String message = app.generate().randomReceivedSmsMQDataSet(attachPhoneNumberResponse, receivedSmsMQDataSet);
+        String message = app.generate().randomReceivedSmsMQDataSet(receivedSmsMQDataSet);
         System.out.println(message);
 
         app.p2p().publish(app.getProperty("rabbitmq.exchange.sms"),

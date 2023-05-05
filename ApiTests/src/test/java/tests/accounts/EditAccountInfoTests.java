@@ -7,7 +7,7 @@ import http.model.accounts.editinfo.EditAccountInfoDataSet;
 import http.model.accounts.editinfo.EditAccountInfoRequest;
 import http.model.accounts.editinfo.dataset.*;
 import org.testng.annotations.Test;
-import static org.testng.AssertJUnit.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class EditAccountInfoTests extends TestBase {
 
@@ -28,10 +28,12 @@ public class EditAccountInfoTests extends TestBase {
         .withLimitsInfo(new LimitsInfo()
                 .withAccountId(String.valueOf((addAccountResponse.account_id())))
                 .withFinancialLimits(new FinancialLimits()
-                        .withCreditLimit(new CreditLimit().withValue("200"))));
+                        .withCreditLimit(new CreditLimit().withValue("200.1123345"))));
 
         editAccountInfoRequest.editAccountInfo(addAccountResponse, editAccountInfoDataSet);
 
-        assertTrue(app.db().getUserByName(requestedAddAccountDataSet).isCredit());
+        assertThat(app.db().getUserByName(requestedAddAccountDataSet).isCredit()).isTrue();
+        assertThat(app.db().getBillingInfo(addAccountResponse).getCredit_limit().stripTrailingZeros().toPlainString())
+                .isEqualTo(editAccountInfoDataSet.getLimitsInfo().getFinancialLimits().getCreditLimit().getValue());
     }
 }

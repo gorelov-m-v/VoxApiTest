@@ -14,11 +14,16 @@ import http.model.phonenumbers.attach.AttachPhoneNumberRequest;
 import http.model.phonenumbers.attach.AttachPhoneNumberResponse;
 import http.model.sms.control.ControlSmsDataSet;
 import http.model.sms.control.ControlSmsRequest;
+import http.model.sms.received.ReceivedSmsMQDataSet;
 import http.model.sms.send.SendSmsMessageDataSet;
 import http.model.sms.send.SendSmsMessageRequest;
 import http.model.sms.send.SendSmsMessageResponse;
+import http.model.sms.send.SmsSendingInfoDataSet;
 import http.model.universal.UniversalResponse;
 import org.testng.annotations.Test;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -60,7 +65,7 @@ public class SendSmsMessageTests extends TestBase {
     }
 
     @Test
-    public void sendSmsMessageByCreditUser() throws InterruptedException {
+    public void sendSmsMessageByCreditUser() throws InterruptedException, IOException, TimeoutException {
         AddAccountDataSet requestedAddAccountDataSet = app.generate().randomUser();
         addAccountResponse = addAccountRequest.addAccount(requestedAddAccountDataSet);
 
@@ -87,7 +92,15 @@ public class SendSmsMessageTests extends TestBase {
         SendSmsMessageDataSet sendSmsMessageDataSet
                 = app.generate().randomSendSmsMessageDataSet(addAccountResponse, attachPhoneNumberResponse);
 
-
         sendSmsMessageResponse = sendSmsMessageRequest.sendSmsMessage(sendSmsMessageDataSet);
+
+        String message = app.generate().randomSmsSendingInfoMQDataSet(app.db().getSms(sendSmsMessageResponse));
+
+        System.out.println(message);
+        app.p2p().publish(app.getProperty("rabbitmq.exchange.sms"),
+                app.getProperty("rabbitmq.routing-key.smsSendingInfo"),
+                message);
+
+        assertThat(app.db().getSms(sendSmsMessageResponse).getTransaction_id()).isNotNull();
     }
 }

@@ -22,6 +22,10 @@ public class SmsHistory {
     private int user_id;
     @Column(name = "direction")
     private String direction;
+    @Column(name = "uuid")
+    private String uuid;
+    @Column(name = "transaction_id")
+    private Integer transaction_id;
 
     public int getId() {
         return id;
@@ -41,6 +45,12 @@ public class SmsHistory {
     public String getDirection() {
         return direction;
     }
+    public String getUuid() {
+        return uuid;
+    }
+    public Integer getTransaction_id() {
+        return transaction_id;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -59,5 +69,11 @@ public class SmsHistory {
     }
     public void setDirection(String direction) {
         this.direction = direction;
+    }
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+    public void setTransaction_id(Integer transaction_id) {
+        this.transaction_id = transaction_id;
     }
 }

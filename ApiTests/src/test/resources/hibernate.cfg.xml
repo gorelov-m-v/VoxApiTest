@@ -25,6 +25,7 @@
         <mapping class="database.model.Users"/>
         <mapping class="database.model.Currency"/>
         <mapping class="database.model.SmsHistory"/>
+        <mapping class="database.model.Accounts"/>
 
     </session-factory>
 </hibernate-configuration>

@@ -3,6 +3,7 @@ package appmanager;
 import com.rabbitmq.client.*;
 import java.io.IOException;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import com.rabbitmq.client.AMQP.BasicProperties;
 
@@ -11,7 +12,8 @@ public class P2PPublisher extends HelperBase{
         super(app);
     }
 
-    public void publish(String exchange, String queue, String message) throws IOException, TimeoutException {
+    public void publish(String exchange, String queue, String message) throws IOException, TimeoutException, InterruptedException {
+        TimeUnit.SECONDS.sleep(2);
         ConnectionFactory connectionFactory = new ConnectionFactory();
         connectionFactory.setHost(app.getProperty("rabbitmq.host"));
         connectionFactory.setVirtualHost(app.getProperty("rabbitmq.VirtualHost"));
