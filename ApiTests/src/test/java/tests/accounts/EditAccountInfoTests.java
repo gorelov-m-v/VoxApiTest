@@ -32,6 +32,6 @@ public class EditAccountInfoTests extends TestBase {
 
         editAccountInfoRequest.editAccountInfo(addAccountResponse, editAccountInfoDataSet);
 
-        assertTrue(app.db().getUserByName(requestedAddAccountDataSet.accountName().toLowerCase()).isCredit());
+        assertTrue(app.db().getUserByName(requestedAddAccountDataSet).isCredit());
     }
 }

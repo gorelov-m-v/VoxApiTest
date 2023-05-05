@@ -2,6 +2,9 @@ package appmanager;
 
 import database.model.SmsHistory;
 import database.model.Users;
+import http.model.accounts.add.AddAccountDataSet;
+import http.model.sms.received.ReceivedSmsMQDataSet;
+import http.model.sms.send.SendSmsMessageResponse;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -15,11 +18,11 @@ public class DbHelper extends HelperBase {
     }
     private final SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 
-    public Users getUserByName(String name) throws InterruptedException {
+    public Users getUserByName(AddAccountDataSet addAccountDataSet) throws InterruptedException {
         TimeUnit.SECONDS.sleep(2);
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        Users result = session.createQuery(String.format("from database.model.Users where username = '%s'", name), Users.class).uniqueResult();
+        Users result = session.createQuery(String.format("from database.model.Users where username = '%s'", addAccountDataSet.accountName().toLowerCase()), Users.class).uniqueResult();
 
         session.getTransaction().commit();
         session.close();
@@ -27,11 +30,11 @@ public class DbHelper extends HelperBase {
         return result;
     }
 
-    public SmsHistory getSmsByUUID(String uuid) {
+    public SmsHistory getSmsByUUID(ReceivedSmsMQDataSet receivedSmsMQDataSet) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        SmsHistory result = session.createQuery(String.format("from database.model.SmsHistory where external_id = '{%s}'", uuid), SmsHistory.class).uniqueResult();
+        SmsHistory result = session.createQuery(String.format("from database.model.SmsHistory where external_id = '{%s}'", receivedSmsMQDataSet.getUuid()), SmsHistory.class).uniqueResult();
 
         session.getTransaction().commit();
         session.close();
@@ -45,6 +48,20 @@ public class DbHelper extends HelperBase {
         session.beginTransaction();
 
         List<SmsHistory> result = session.createQuery("from database.model.SmsHistory", SmsHistory.class).list();
+
+        session.getTransaction().commit();
+        session.close();
+
+        return result;
+    }
+
+    public SmsHistory getSms(SendSmsMessageResponse sendSmsMessageResponse) throws InterruptedException {
+        TimeUnit.SECONDS.sleep(2);
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+       SmsHistory result = session.createQuery(String.format("from database.model.SmsHistory where id = '%s'",
+                sendSmsMessageResponse.getMessageId()), SmsHistory.class).uniqueResult();
 
         session.getTransaction().commit();
         session.close();

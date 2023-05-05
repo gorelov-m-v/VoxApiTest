@@ -129,6 +129,6 @@ public class AddAccountTests extends TestBase {
 
         response = request.addAccount(addAccountDataSet);
 
-        assertThat(app.db().getUserByName(addAccountDataSet.accountName().toLowerCase()).getCurrency().getCode()).isEqualTo(addAccountDataSet.getCurrency());
+        assertThat(app.db().getUserByName(addAccountDataSet).getCurrency().getCode()).isEqualTo(addAccountDataSet.getCurrency());
     }
 }

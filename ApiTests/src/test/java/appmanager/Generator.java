@@ -83,6 +83,7 @@ public class Generator extends HelperBase {
                 .withName(app.generate().randomAccountName(15))
                 .withPassword(app.generate().simplePassword)
                 .withApiKey(app.getProperty("papi.admin_api-key"))
+                .withInitBalance(300)
                 .withActive(true);
     }
 

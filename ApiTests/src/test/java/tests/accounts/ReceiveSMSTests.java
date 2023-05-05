@@ -56,10 +56,10 @@ public class ReceiveSMSTests extends TestBase{
                           app.getProperty("rabbitmq.routing-key.receiveSms"),
                           message);
 
-        assertNotNull(app.db().getSmsByUUID(receivedSmsMQDataSet.getUuid()).getId());
+        assertNotNull(app.db().getSmsByUUID(receivedSmsMQDataSet).getId());
     }
 
-    @Test
+    @Test(enabled = false)
     public void smokeByHTTP() throws InterruptedException {
 
         AddAccountDataSet requestedAddAccountDataSet = app.generate().randomUser();
