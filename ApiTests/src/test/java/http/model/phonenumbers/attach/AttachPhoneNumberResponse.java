@@ -2,7 +2,6 @@ package http.model.phonenumbers.attach;
 
 import http.model.universal.dataset.Error;
 import http.model.universal.dataset.Errors;
-
 import java.util.List;
 
 //https://voximplant.com/docs/references/httpapi/phonenumbers#bindphonenumbertoapplication

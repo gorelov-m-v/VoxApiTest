@@ -1,7 +1,5 @@
 package http.model.sms.send;
 
-import java.util.List;
-
 public class SmsSendingInfoDataSet {
     private String message;
     private String transaction_id;

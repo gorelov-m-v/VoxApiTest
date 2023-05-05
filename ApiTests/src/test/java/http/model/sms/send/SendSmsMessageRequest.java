@@ -1,8 +1,6 @@
 package http.model.sms.send;
 
 import constants.Paths;
-import http.model.accounts.add.AddAccountResponse;
-import http.model.phonenumbers.attach.AttachPhoneNumberResponse;
 import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
 import io.restassured.config.RestAssuredConfig;
