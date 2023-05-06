@@ -1,10 +1,10 @@
 package tests.accounts;
 
-import http.model.accounts.add.AddAccountDataSet;
+import model.http.accounts.add.AddAccountDataSet;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import http.model.accounts.add.AddAccountRequest;
-import http.model.accounts.add.AddAccountResponse;
+import model.http.accounts.add.AddAccountRequest;
+import model.http.accounts.add.AddAccountResponse;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AddAccountTests extends TestBase {

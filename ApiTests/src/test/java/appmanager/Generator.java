@@ -1,17 +1,17 @@
 package appmanager;
 
-import database.model.SmsHistory;
-import http.model.sms.received.ReceiverSmsHTTPDataSet;
-import http.model.sms.send.SendSmsMessageDataSet;
+import model.database.SmsHistory;
+import model.http.sms.received.ReceiverSmsHTTPDataSet;
+import model.http.sms.send.SendSmsMessageDataSet;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
-import http.model.accounts.add.AddAccountResponse;
-import http.model.accounts.add.AddAccountDataSet;
-import http.model.accounts.setdocument.AccountDocumentDataSet;
-import http.model.phonenumbers.attach.AttachPhoneNumberDataSet;
-import http.model.phonenumbers.attach.AttachPhoneNumberResponse;
-import http.model.sms.control.ControlSmsDataSet;
-import http.model.sms.received.ReceivedSmsMQDataSet;
+import model.http.accounts.add.AddAccountResponse;
+import model.http.accounts.add.AddAccountDataSet;
+import model.http.accounts.setdocument.AccountDocumentDataSet;
+import model.http.phonenumbers.attach.AttachPhoneNumberDataSet;
+import model.http.phonenumbers.attach.AttachPhoneNumberResponse;
+import model.http.sms.control.ControlSmsDataSet;
+import model.http.sms.received.ReceivedSmsMQDataSet;
 import java.time.LocalDate;
 import java.util.*;
 

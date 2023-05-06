@@ -22,10 +22,10 @@
         <property name="hibernate.hbm2ddl.auto">validate</property>
 
         <!-- Annotated entity classes -->
-        <mapping class="database.model.Users"/>
-        <mapping class="database.model.Currency"/>
-        <mapping class="database.model.SmsHistory"/>
-        <mapping class="database.model.Accounts"/>
+        <mapping class="model.database.Users"/>
+        <mapping class="model.database.Currency"/>
+        <mapping class="model.database.SmsHistory"/>
+        <mapping class="model.database.Accounts"/>
 
     </session-factory>
 </hibernate-configuration>

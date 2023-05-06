@@ -1,11 +1,11 @@
 package tests.accounts;
 
-import http.model.accounts.add.AddAccountDataSet;
-import http.model.accounts.add.AddAccountRequest;
-import http.model.accounts.add.AddAccountResponse;
-import http.model.accounts.editinfo.EditAccountInfoDataSet;
-import http.model.accounts.editinfo.EditAccountInfoRequest;
-import http.model.accounts.editinfo.dataset.*;
+import model.http.accounts.add.AddAccountDataSet;
+import model.http.accounts.add.AddAccountRequest;
+import model.http.accounts.add.AddAccountResponse;
+import model.http.accounts.editinfo.EditAccountInfoDataSet;
+import model.http.accounts.editinfo.EditAccountInfoRequest;
+import model.http.accounts.editinfo.dataset.*;
 import org.testng.annotations.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 

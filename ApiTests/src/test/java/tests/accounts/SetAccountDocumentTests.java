@@ -1,12 +1,12 @@
 package tests.accounts;
 
 import org.testng.annotations.Test;
-import http.model.accounts.add.AddAccountRequest;
-import http.model.accounts.setdocument.SetAccountDocumentRequest;
-import http.model.accounts.setdocument.AccountDocumentDataSet;
-import http.model.accounts.add.AddAccountDataSet;
-import http.model.accounts.add.AddAccountResponse;
-import http.model.accounts.setdocument.SetAccountDocumentResponse;
+import model.http.accounts.add.AddAccountRequest;
+import model.http.accounts.setdocument.SetAccountDocumentRequest;
+import model.http.accounts.setdocument.AccountDocumentDataSet;
+import model.http.accounts.add.AddAccountDataSet;
+import model.http.accounts.add.AddAccountResponse;
+import model.http.accounts.setdocument.SetAccountDocumentResponse;
 
 public class SetAccountDocumentTests extends TestBase {
 

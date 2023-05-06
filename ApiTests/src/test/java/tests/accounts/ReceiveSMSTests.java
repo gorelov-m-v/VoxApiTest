@@ -1,24 +1,23 @@
 package tests.accounts;
 
-import http.model.sms.received.ReceivedSMSRequest;
-import http.model.sms.received.ReceiverSmsHTTPDataSet;
+import model.http.sms.received.ReceivedSMSRequest;
+import model.http.sms.received.ReceiverSmsHTTPDataSet;
 import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
-
-import http.model.accounts.add.AddAccountRequest;
-import http.model.accounts.add.AddAccountDataSet;
-import http.model.accounts.setdocument.AccountDocumentDataSet;
-import http.model.phonenumbers.attach.AttachPhoneNumberDataSet;
-import http.model.phonenumbers.attach.AttachPhoneNumberRequest;
-import http.model.sms.control.ControlSmsDataSet;
-import http.model.sms.control.ControlSmsRequest;
-import http.model.accounts.setdocument.SetAccountDocumentRequest;
-import http.model.accounts.add.AddAccountResponse;
-import http.model.phonenumbers.attach.AttachPhoneNumberResponse;
-import http.model.accounts.setdocument.SetAccountDocumentResponse;
-import http.model.sms.received.ReceivedSmsMQDataSet;
-import http.model.universal.UniversalResponse;
+import model.http.accounts.add.AddAccountRequest;
+import model.http.accounts.add.AddAccountDataSet;
+import model.http.accounts.setdocument.AccountDocumentDataSet;
+import model.http.phonenumbers.attach.AttachPhoneNumberDataSet;
+import model.http.phonenumbers.attach.AttachPhoneNumberRequest;
+import model.http.sms.control.ControlSmsDataSet;
+import model.http.sms.control.ControlSmsRequest;
+import model.http.accounts.setdocument.SetAccountDocumentRequest;
+import model.http.accounts.add.AddAccountResponse;
+import model.http.phonenumbers.attach.AttachPhoneNumberResponse;
+import model.http.accounts.setdocument.SetAccountDocumentResponse;
+import model.http.sms.received.ReceivedSmsMQDataSet;
+import model.http.universal.UniversalResponse;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.testng.Assert.assertNotNull;
 

@@ -1,18 +1,18 @@
 package tests.accounts;
 
 import org.testng.annotations.Test;
-import http.model.accounts.add.AddAccountRequest;
-import http.model.phonenumbers.attach.AttachPhoneNumberRequest;
-import http.model.sms.control.ControlSmsRequest;
-import http.model.accounts.setdocument.SetAccountDocumentRequest;
-import http.model.accounts.setdocument.AccountDocumentDataSet;
-import http.model.phonenumbers.attach.AttachPhoneNumberDataSet;
-import http.model.sms.control.ControlSmsDataSet;
-import http.model.accounts.add.AddAccountDataSet;
-import http.model.accounts.add.AddAccountResponse;
-import http.model.phonenumbers.attach.AttachPhoneNumberResponse;
-import http.model.accounts.setdocument.SetAccountDocumentResponse;
-import http.model.universal.UniversalResponse;
+import model.http.accounts.add.AddAccountRequest;
+import model.http.phonenumbers.attach.AttachPhoneNumberRequest;
+import model.http.sms.control.ControlSmsRequest;
+import model.http.accounts.setdocument.SetAccountDocumentRequest;
+import model.http.accounts.setdocument.AccountDocumentDataSet;
+import model.http.phonenumbers.attach.AttachPhoneNumberDataSet;
+import model.http.sms.control.ControlSmsDataSet;
+import model.http.accounts.add.AddAccountDataSet;
+import model.http.accounts.add.AddAccountResponse;
+import model.http.phonenumbers.attach.AttachPhoneNumberResponse;
+import model.http.accounts.setdocument.SetAccountDocumentResponse;
+import model.http.universal.UniversalResponse;
 
 public class ControlSmsTests extends TestBase {
 

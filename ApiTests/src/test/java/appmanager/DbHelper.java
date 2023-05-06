@@ -1,12 +1,12 @@
 package appmanager;
 
-import database.model.Accounts;
-import database.model.SmsHistory;
-import database.model.Users;
-import http.model.accounts.add.AddAccountDataSet;
-import http.model.accounts.add.AddAccountResponse;
-import http.model.sms.received.ReceivedSmsMQDataSet;
-import http.model.sms.send.SendSmsMessageResponse;
+import model.database.Accounts;
+import model.database.SmsHistory;
+import model.database.Users;
+import model.http.accounts.add.AddAccountDataSet;
+import model.http.accounts.add.AddAccountResponse;
+import model.http.sms.received.ReceivedSmsMQDataSet;
+import model.http.sms.send.SendSmsMessageResponse;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -24,7 +24,7 @@ public class DbHelper extends HelperBase {
         TimeUnit.SECONDS.sleep(2);
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        Users result = session.createQuery(String.format("from database.model.Users where username = '%s'", addAccountDataSet.accountName().toLowerCase()), Users.class).uniqueResult();
+        Users result = session.createQuery(String.format("from model.database.Users where username = '%s'", addAccountDataSet.accountName().toLowerCase()), Users.class).uniqueResult();
 
         session.getTransaction().commit();
         session.close();
@@ -36,7 +36,7 @@ public class DbHelper extends HelperBase {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        SmsHistory result = session.createQuery(String.format("from database.model.SmsHistory where external_id = '{%s}'", receivedSmsMQDataSet.getUuid()), SmsHistory.class).uniqueResult();
+        SmsHistory result = session.createQuery(String.format("from model.database.SmsHistory where external_id = '{%s}'", receivedSmsMQDataSet.getUuid()), SmsHistory.class).uniqueResult();
 
         session.getTransaction().commit();
         session.close();
@@ -49,7 +49,7 @@ public class DbHelper extends HelperBase {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        List<SmsHistory> result = session.createQuery("from database.model.SmsHistory", SmsHistory.class).list();
+        List<SmsHistory> result = session.createQuery("from model.database.SmsHistory", SmsHistory.class).list();
 
         session.getTransaction().commit();
         session.close();
@@ -62,7 +62,7 @@ public class DbHelper extends HelperBase {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-       SmsHistory result = session.createQuery(String.format("from database.model.SmsHistory where id = '%s'",
+       SmsHistory result = session.createQuery(String.format("from model.database.SmsHistory where id = '%s'",
                 sendSmsMessageResponse.getMessageId()), SmsHistory.class).uniqueResult();
 
         session.getTransaction().commit();
@@ -76,7 +76,7 @@ public class DbHelper extends HelperBase {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        Accounts result = session.createQuery(String.format("from database.model.Accounts where id = '%s'",
+        Accounts result = session.createQuery(String.format("from model.database.Accounts where id = '%s'",
                 addAccountResponse.billing_account_id()), Accounts.class).uniqueResult();
 
         session.getTransaction().commit();
@@ -90,7 +90,7 @@ public class DbHelper extends HelperBase {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        List<SmsHistory> result = session.createQuery("select id from database.model.SmsHistory", SmsHistory.class).list();
+        List<SmsHistory> result = session.createQuery("select id from model.database.SmsHistory", SmsHistory.class).list();
 
         session.getTransaction().commit();
         session.close();
