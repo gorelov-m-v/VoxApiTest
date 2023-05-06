@@ -1,9 +1,7 @@
 package database.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.util.List;
 
 @Entity
@@ -48,7 +46,7 @@ public class SmsHistory {
     public String getUuid() {
         return uuid;
     }
-    public Integer getTransaction_id() {
+    public Integer gettransaction_id() {
         return transaction_id;
     }
 
@@ -73,7 +71,7 @@ public class SmsHistory {
     public void setUuid(String uuid) {
         this.uuid = uuid;
     }
-    public void setTransaction_id(Integer transaction_id) {
+    public void settransaction_id(Integer transaction_id) {
         this.transaction_id = transaction_id;
     }
 }

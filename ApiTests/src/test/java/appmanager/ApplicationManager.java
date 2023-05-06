@@ -9,7 +9,7 @@ public class ApplicationManager {
     private final Properties properties;
     private DbHelper db;
     private Generator generate;
-    private P2PPublisher p2p;
+    private MQPublisher mqp;
 
     public ApplicationManager() {
         properties = new Properties();
@@ -38,10 +38,10 @@ public class ApplicationManager {
         return generate;
     }
 
-    public P2PPublisher p2p() {
-        if(p2p == null) {
-            p2p = new P2PPublisher(this);
+    public MQPublisher mqp() {
+        if(mqp == null) {
+            mqp = new MQPublisher(this);
         }
-        return p2p;
+        return mqp;
     }
 }

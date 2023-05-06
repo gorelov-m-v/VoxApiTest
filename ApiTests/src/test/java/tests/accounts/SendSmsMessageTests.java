@@ -53,9 +53,9 @@ public class SendSmsMessageTests extends TestBase {
         SendSmsMessageDataSet sendSmsMessageDataSet
                 = app.generate().randomSendSmsMessageDataSet(addAccountResponse, attachPhoneNumberResponse);
 
-        int before = app.db().getAllSmsHistory().size();
+        int before = app.db().getAllSmsId().size();
         sendSmsMessageResponse = sendSmsMessageRequest.sendSmsMessage(sendSmsMessageDataSet);
-        int after = app.db().getAllSmsHistory().size();
+        int after = app.db().getAllSmsId().size();
 
         assertThat(after).isEqualTo(before + 1);
     }
@@ -92,10 +92,10 @@ public class SendSmsMessageTests extends TestBase {
 
         String message = app.generate().randomSmsSendingInfoMQDataSet(app.db().getSms(sendSmsMessageResponse));
 
-        app.p2p().publish(app.getProperty("rabbitmq.exchange.sms"),
+        app.mqp().publish(app.getProperty("rabbitmq.exchange.sms"),
                 app.getProperty("rabbitmq.routing-key.smsSendingInfo"),
                 message);
 
-        assertThat(app.db().getSms(sendSmsMessageResponse).getTransaction_id()).isNotNull();
+        assertThat(app.db().getSms(sendSmsMessageResponse).gettransaction_id()).isNotNull();
     }
 }

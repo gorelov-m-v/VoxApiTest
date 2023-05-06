@@ -5,6 +5,7 @@ import http.model.sms.received.ReceiverSmsHTTPDataSet;
 import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
+
 import http.model.accounts.add.AddAccountRequest;
 import http.model.accounts.add.AddAccountDataSet;
 import http.model.accounts.setdocument.AccountDocumentDataSet;
@@ -52,7 +53,7 @@ public class ReceiveSMSTests extends TestBase{
         String message = app.generate().randomReceivedSmsMQDataSet(receivedSmsMQDataSet);
         System.out.println(message);
 
-        app.p2p().publish(app.getProperty("rabbitmq.exchange.sms"),
+        app.mqp().publish(app.getProperty("rabbitmq.exchange.sms"),
                           app.getProperty("rabbitmq.routing-key.receiveSms"),
                           message);
 
@@ -78,9 +79,9 @@ public class ReceiveSMSTests extends TestBase{
         ReceiverSmsHTTPDataSet receiverSmsHTTPDataSet = app.generate()
                 .randomReceivedSmsHTTPDataSet(attachPhoneNumberResponse);
 
-        int before = app.db().getAllSmsHistory().size();
+        int before = app.db().getAllSmsId().size();
         receivedSMSRequest.receivedSms(receiverSmsHTTPDataSet);
-        int after = app.db().getAllSmsHistory().size();
+        int after = app.db().getAllSmsId().size();
 
         assertThat(after).isEqualTo(before + 1);
     }

@@ -85,4 +85,16 @@ public class DbHelper extends HelperBase {
         return result;
     }
 
+    public List<SmsHistory> getAllSmsId() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(2);
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        List<SmsHistory> result = session.createQuery("select id from database.model.SmsHistory", SmsHistory.class).list();
+
+        session.getTransaction().commit();
+        session.close();
+
+        return result;
+    }
 }
