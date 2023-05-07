@@ -44,7 +44,7 @@ public class Generator extends HelperBase {
         return randomEmail.toLowerCase();
     }
 
-    public static String randomPassword(int length) {
+    public String randomPassword(int length) {
         List<Character> chars = new ArrayList<>(length);
         boolean hasUpper = false;
         boolean hasLower = false;
