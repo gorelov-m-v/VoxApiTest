@@ -6,6 +6,8 @@ import io.cucumber.java.en.When;
 import model.http.accounts.add.AddAccountDataSet;
 import model.http.accounts.add.AddAccountRequest;
 import model.http.accounts.add.AddAccountResponse;
+import org.testng.Assert;
+
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -56,9 +58,14 @@ public class AddAccountDefinitions {
         addAccountResponse = addAccountRequest.addAccount(addAccountDataSet);
     }
 
-    @Then("Проверка успешности создания аккаунта, result = {string}")
-    public void checkResultParamInResponse(String result) {
+    @Then("Проверка успешности создания аккаунта: result = {string}, и занесения данных в БД")
+    public void checkResultParamInResponse(String result) throws InterruptedException {
         assertThat(addAccountResponse.result()).isEqualTo(parseInt(result));
+        if (parseInt(result) == 1) {
+            int accountIdFromBd = app.db().getUserByName(addAccountDataSet).getId();
+            int accountIdFromResponse = addAccountResponse.account_id();
+            assertThat(accountIdFromBd).isEqualTo(accountIdFromResponse);
+        }
     }
 
 

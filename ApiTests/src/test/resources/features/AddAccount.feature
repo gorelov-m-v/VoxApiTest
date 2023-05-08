@@ -3,7 +3,7 @@ Feature: Создание аккаунта
   Scenario Outline: Проверка валидации длины параметра "account_name"
     Given Созданы данные аккаунта с длинной параметра account_name "<accountNameLength>"
     When Отправлен запрос на создание аккаунта с подготовленными данными
-    Then Проверка успешности создания аккаунта, result = "<result>"
+    Then Проверка успешности создания аккаунта: result = "<result>", и занесения данных в БД
 
     Examples:
       | accountNameLength | result |
@@ -21,7 +21,7 @@ Feature: Создание аккаунта
   Scenario Outline: Проверка валидации длины параметра "account_password"
     Given Созданы данные аккаунта с длинной параметра account_password "<accountPasswordLength>"
     When Отправлен запрос на создание аккаунта с подготовленными данными
-    Then Проверка успешности создания аккаунта, result = "<result>"
+    Then Проверка успешности создания аккаунта: result = "<result>", и занесения данных в БД
 
     Examples:
       | accountPasswordLength | result |
@@ -33,7 +33,7 @@ Feature: Создание аккаунта
   Scenario Outline: Проверка набора валют "currency", доступных для аккаунта аккаунта
     Given Созданы данные аккаунта со значением параметра currency = "<currency>"
     When Отправлен запрос на создание аккаунта с подготовленными данными
-    Then Проверка успешности создания аккаунта, result = "<result>"
+    Then Проверка успешности создания аккаунта: result = "<result>", и занесения данных в БД
 
     Examples:
       | currency | result |
