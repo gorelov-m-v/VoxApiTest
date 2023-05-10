@@ -1,5 +1,6 @@
 package model.cucumber.definitions;
 
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -14,10 +15,13 @@ public class AddAccountDefinitions  extends DefinitionsBase {
     public AddAccountDefinitions(World world) {
         this.world = world;
     }
+    @Before
+    public void setup() throws IOException {
+        app.init();
+    }
 
     @Given("Созданы данные аккаунта с длинной параметра account_name {string}")
     public void createAddAccountDataSetWithFixAccountNameLength(String accountNameLength) throws IOException {
-        app.init();
         world.addAccountDataSet = new AddAccountDataSet()
                 .withActive(true)
                 .withApiKey(app.getProperty("papi.admin_api-key"))
@@ -28,7 +32,6 @@ public class AddAccountDefinitions  extends DefinitionsBase {
 
     @Given("Созданы данные аккаунта с длинной параметра account_password {string}")
     public void createAddAccountDataSetWithFixAccountPasswordLength(String accountPasswordLength) throws IOException {
-        app.init();
         world.addAccountDataSet = new AddAccountDataSet()
                 .withActive(true)
                 .withApiKey(app.getProperty("papi.admin_api-key"))
@@ -39,7 +42,6 @@ public class AddAccountDefinitions  extends DefinitionsBase {
 
     @Given("Созданы данные аккаунта со значением параметра currency = {string}")
     public void createAccountDataSetWithFixCurrency(String currency) throws IOException {
-        app.init();
         world.addAccountDataSet = new AddAccountDataSet()
                 .withActive(true)
                 .withApiKey(app.getProperty("papi.admin_api-key"))
@@ -51,7 +53,6 @@ public class AddAccountDefinitions  extends DefinitionsBase {
 
     @Given("Создан аккаунт c с валидными данными")
     public void createAccountWithValidData() throws IOException {
-        app.init();
         world.addAccountDataSet = new AddAccountDataSet()
                 .withActive(true)
                 .withApiKey(app.getProperty("papi.admin_api-key"))
