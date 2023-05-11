@@ -34,4 +34,9 @@ public class SendSmsMessageDefinitions extends DefinitionsBase {
     public void sendSmsMessageRequest() {
         world.sendSmsMessageResponse = sendSmsMessageRequest.sendSmsMessage(world.sendSmsMessageDataSet);
     }
+
+    @When("Имитирована доставка SMS сообщением в очередь")
+    public void sendSmsInfoOkImitation() {
+
+    }
 }
