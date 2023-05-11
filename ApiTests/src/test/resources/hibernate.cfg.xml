@@ -26,6 +26,6 @@
         <mapping class="model.database.Currency"/>
         <mapping class="model.database.SmsHistory"/>
         <mapping class="model.database.Accounts"/>
-
+        <mapping class="model.database.DeferredTransactions"/>
     </session-factory>
 </hibernate-configuration>

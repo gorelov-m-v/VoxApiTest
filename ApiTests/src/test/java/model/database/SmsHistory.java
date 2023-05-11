@@ -23,6 +23,8 @@ public class SmsHistory {
     private String uuid;
     @Column(name = "transaction_id")
     private Integer transaction_id;
+    @Column(name = "deferred_transaction_id")
+    private Integer deferred_transaction_id;
 
     public int getId() {
         return id;
@@ -48,6 +50,9 @@ public class SmsHistory {
     public Integer gettransaction_id() {
         return transaction_id;
     }
+    public Integer getDeferred_transaction_id() {
+        return deferred_transaction_id;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -72,5 +77,8 @@ public class SmsHistory {
     }
     public void settransaction_id(Integer transaction_id) {
         this.transaction_id = transaction_id;
+    }
+    public void setDeferred_transaction_id(Integer deferred_transaction_id) {
+        this.deferred_transaction_id = deferred_transaction_id;
     }
 }

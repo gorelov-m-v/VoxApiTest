@@ -1,6 +1,7 @@
 package appmanager;
 
 import model.database.Accounts;
+import model.database.DeferredTransactions;
 import model.database.SmsHistory;
 import model.database.Users;
 import model.http.accounts.add.AddAccountDataSet;
@@ -91,6 +92,21 @@ public class DbHelper extends HelperBase {
         session.beginTransaction();
 
         List<SmsHistory> result = session.createQuery("select id from model.database.SmsHistory", SmsHistory.class).list();
+
+        session.getTransaction().commit();
+        session.close();
+
+        return result;
+    }
+
+    public DeferredTransactions getDeferredTransactions(SmsHistory smsHistory) throws InterruptedException {
+        TimeUnit.SECONDS.sleep(2);
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        DeferredTransactions result = session.createQuery(String.format
+                ("from model.database.DeferredTransactions where transaction_id = '%s'" ,
+                        smsHistory.getDeferred_transaction_id()), DeferredTransactions.class).uniqueResult();
 
         session.getTransaction().commit();
         session.close();
