@@ -51,6 +51,30 @@ public class AddAccountDefinitions  extends DefinitionsBase {
                 .withCurrency(currency);
     }
 
+    @Given("Созданы данные аккаунта с балансом в {string}$ на счете")
+    public void createAddAccountDataSetWithFixInitBalance(String initBalance) {
+        world.addAccountDataSet = new AddAccountDataSet()
+                .withActive(true)
+                .withApiKey(app.getProperty("papi.admin_api-key"))
+                .withPassword(app.generate().randomPassword(10))
+                .withEmail(app.generate().randomEmail())
+                .withName(app.generate().randomString(12))
+                .withCurrency("USD")
+                .withInitBalance(Double.parseDouble(initBalance));
+    }
+
+    @Given("Созданы данные аккаунта с нулевым балансом")
+    public void createAddAccountDataSetWithZeroInitBalance() {
+        world.addAccountDataSet = new AddAccountDataSet()
+                .withActive(true)
+                .withApiKey(app.getProperty("papi.admin_api-key"))
+                .withPassword(app.generate().randomPassword(10))
+                .withEmail(app.generate().randomEmail())
+                .withName(app.generate().randomString(12))
+                .withCurrency("USD")
+                .withInitBalance(0.0);
+    }
+
     @Given("Создан аккаунт c с валидными данными")
     public void createAccountWithValidData() throws IOException {
         world.addAccountDataSet = new AddAccountDataSet()

@@ -20,7 +20,7 @@ public class EditAccountInfoDefinitions extends DefinitionsBase {
         app.init();
     }
 
-    @Given("Созданы данные для изменения статуса и кредитного лимита аккаунта")
+    @Given("Созданы данные для изменения кредитного статуса и кредитного лимита аккаунта")
     public void createEditAccountInfoDataSet() throws IOException {
         world.editAccountInfoDataSet =  new EditAccountInfoDataSet()
                 .withFinancialInfo(new FinancialInfo()
@@ -31,6 +31,19 @@ public class EditAccountInfoDefinitions extends DefinitionsBase {
                         .withAccountId(String.valueOf((world.addAccountResponse.account_id())))
                         .withFinancialLimits(new FinancialLimits()
                                 .withCreditLimit(new CreditLimit().withValue("200.1123345"))));
+    }
+
+    @Given("Созданы данные для изменения кредитного статуса и кредитного лимита в {string}$ аккаунта")
+    public void createEditAccountInfoDataSetWithFixCreditLimit(String creditLimit) {
+        world.editAccountInfoDataSet =  new EditAccountInfoDataSet()
+                .withFinancialInfo(new FinancialInfo()
+                        .withIsCreditUser(new IsCreditUser()
+                                .withValue(true))
+                        .withAccountId(String.valueOf((world.addAccountResponse.account_id()))))
+                .withLimitsInfo(new LimitsInfo()
+                        .withAccountId(String.valueOf((world.addAccountResponse.account_id())))
+                        .withFinancialLimits(new FinancialLimits()
+                                .withCreditLimit(new CreditLimit().withValue(creditLimit))));
     }
 
     @When("Отправлен запрос на изменение данных аккаунта")

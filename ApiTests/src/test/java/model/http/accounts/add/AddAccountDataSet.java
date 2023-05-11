@@ -20,7 +20,7 @@ public class AddAccountDataSet {
     // Optional
     private String currency;
     private boolean is_trial;
-    private Integer init_balance;
+    private Double init_balance;
     private Double min_balance_to_notify;
     private String account_custom_data;
     private String account_first_name;
@@ -105,7 +105,7 @@ public class AddAccountDataSet {
     public String getCurrency() {
         return currency;
     }
-    public Integer getInitBalance() {
+    public Double getInitBalance() {
         return init_balance;
     }
 
@@ -160,7 +160,7 @@ public class AddAccountDataSet {
         this.is_trial = is_trial;
         return this;
     }
-    public AddAccountDataSet withInitBalance(int init_balance) {
+    public AddAccountDataSet withInitBalance(Double init_balance) {
         this.init_balance = init_balance;
         return this;
     }
