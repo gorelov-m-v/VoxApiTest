@@ -5,7 +5,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import model.http.sms.control.ControlSmsDataSet;
 import java.io.IOException;
-import static tests.accounts.TestBase.app;
 
 public class ControlSmsDefinitions extends DefinitionsBase {
     private World world;

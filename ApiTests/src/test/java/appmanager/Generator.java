@@ -1,18 +1,9 @@
 package appmanager;
 
 import model.database.SmsHistory;
-import model.http.sms.received.ReceiverSmsHTTPDataSet;
-import model.http.sms.send.SendSmsMessageDataSet;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
-import model.http.accounts.add.AddAccountResponse;
-import model.http.accounts.add.AddAccountDataSet;
-import model.http.accounts.setdocument.AccountDocumentDataSet;
-import model.http.phonenumbers.attach.AttachPhoneNumberDataSet;
-import model.http.phonenumbers.attach.AttachPhoneNumberResponse;
-import model.http.sms.control.ControlSmsDataSet;
 import model.http.sms.received.ReceivedSmsMQDataSet;
-import java.time.LocalDate;
 import java.util.*;
 
 public class Generator extends HelperBase {
@@ -27,7 +18,6 @@ public class Generator extends HelperBase {
     private static final String DIGITS = "0123456789";
     private static final String SPECIAL = "~!@#$%^&*_-+=`|\\(){}[]:;\"'<>,.?/";
     public static final String ALPHANUMERIC_AND_SPECIAL_SYMBOLS = UPPER + LOWER + DIGITS + SPECIAL;
-    public String simplePassword = "Aa123456!";
 
     public String randomString(int length) {
         String combination = LOWER + UPPER;
@@ -71,61 +61,8 @@ public class Generator extends HelperBase {
         return StringUtils.join(chars, "");
     }
 
-    public String randomAccountName(int length) {
-        return randomString(length);
-    }
-
     public int randomValue(int min, int max) {
         return random.nextInt(max - min) + min;
-    }
-
-    public AddAccountDataSet randomUser() {
-        return new AddAccountDataSet().withEmail(app.generate().randomEmail())
-                .withName(app.generate().randomAccountName(15))
-                .withPassword(app.generate().simplePassword)
-                .withApiKey(app.getProperty("papi.admin_api-key"))
-                .withInitBalance(300.0)
-                .withActive(true);
-    }
-
-    public AccountDocumentDataSet randomAccountDocument(AddAccountResponse addAccountResponse) {
-        return new AccountDocumentDataSet().withAccountId(addAccountResponse.account_id())
-                .withApiKey(app.getProperty("papi.admin_api-key"))
-                .withLegalStatus("individual")
-                .withEsiaVerified(true)
-                .withIndividualPassportSeries(1222)
-                .withIndividualPassportNumber(555667)
-                .withIndividualPassportIssuedBy("sdadasd")
-                .withIndividualPassportIssueDate(LocalDate.now().toString())
-                .withIndividualFullName("asdasdasd")
-                .withIndividualBirthDate(LocalDate.now().toString())
-                .withIndividualRegistrationAddress("dasdasd")
-                .withIndividualPhoneNumber("79032530778")
-                .withDocumentDeliveryAddress("sadasdasdasd")
-                .withEmail("mail123123dd@mail.ru");
-    }
-
-    public AttachPhoneNumberDataSet randomAttachPhoneNumber(AddAccountResponse addAccountResponse) {
-        return new AttachPhoneNumberDataSet().withAccountId(addAccountResponse.account_id())
-                                      .withApiKey(addAccountResponse.api_key())
-                                      .withCountryCode("BE")
-                                      .withPhoneRegionId("20560")
-                                      .withPhoneCategoryName("MOBILE");
-    }
-
-    public ControlSmsDataSet randomControlSmsDataSet(AddAccountResponse addAccountResponse, AttachPhoneNumberResponse attachPhoneNumberResponse) {
-        return new ControlSmsDataSet().withAccountId(addAccountResponse.account_id())
-                .withApiKey(addAccountResponse.api_key())
-                .withPhoneNumber(attachPhoneNumberResponse.getPhone_numbers().get(0).getPhone_number())
-                .withCommand("enable");
-    }
-    public ReceivedSmsMQDataSet randomReceivedSmsMQDataSet(AttachPhoneNumberResponse attachPhoneNumberResponse) {
-        return new ReceivedSmsMQDataSet().withSourceNumber(app.generate().randomString(8))
-                .withDestinationNumber(attachPhoneNumberResponse.getPhone_numbers().get(0).getPhone_number())
-                .withUuid(UUID.randomUUID().toString())
-                .withFragmentsCount(1)
-                .withReceivedDate(LocalDate.now())
-                .withMessage(app.generate().randomString(20));
     }
 
     public String randomReceivedSmsMQDataSet(ReceivedSmsMQDataSet receivedSmsMQDataSet) {
@@ -156,22 +93,5 @@ public class Generator extends HelperBase {
                 , smsHistory.getUuid()
                 , 1
                 , 0);
-    }
-
-    public ReceiverSmsHTTPDataSet randomReceivedSmsHTTPDataSet(AttachPhoneNumberResponse attachPhoneNumberResponse) {
-        return new ReceiverSmsHTTPDataSet().withSrcNumber(app.generate().randomString(8))
-                .withDstNumber(attachPhoneNumberResponse.getPhone_numbers().get(0).getPhone_number())
-                .withContent(app.generate().randomString(20));
-    }
-
-    public SendSmsMessageDataSet randomSendSmsMessageDataSet(AddAccountResponse addAccountResponse,
-                                                             AttachPhoneNumberResponse attachPhoneNumberResponse) {
-        return new SendSmsMessageDataSet()
-                .withAccountId(addAccountResponse.account_id())
-                .withApiKey(addAccountResponse.api_key())
-                .withSource(attachPhoneNumberResponse.getPhone_numbers().get(0).getPhone_number())
-                .withDestination("32466902107")
-                .withSmsBody(app.generate().randomString(20))
-                .withStoreBody(true);
     }
 }

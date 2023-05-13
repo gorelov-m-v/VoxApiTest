@@ -5,7 +5,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import model.http.phonenumbers.attach.AttachPhoneNumberDataSet;
 import java.io.IOException;
-import static tests.accounts.TestBase.app;
 
 public class AttachPhoneNumberDefinitions extends DefinitionsBase {
     private World world;

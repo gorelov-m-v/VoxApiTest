@@ -8,7 +8,6 @@ import model.http.accounts.add.AddAccountDataSet;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import static org.assertj.core.api.Assertions.assertThat;
-import static tests.accounts.TestBase.app;
 public class AddAccountDefinitions  extends DefinitionsBase {
     private World world;
 

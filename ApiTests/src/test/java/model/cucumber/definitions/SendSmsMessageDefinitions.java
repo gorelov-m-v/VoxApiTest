@@ -5,12 +5,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import model.http.sms.send.SendSmsMessageDataSet;
-
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static tests.accounts.TestBase.app;
 
 public class SendSmsMessageDefinitions extends DefinitionsBase {
     private World world;

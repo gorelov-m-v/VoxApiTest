@@ -8,7 +8,6 @@ import model.http.accounts.editinfo.EditAccountInfoDataSet;
 import model.http.accounts.editinfo.dataset.*;
 import java.io.IOException;
 import static org.assertj.core.api.Assertions.assertThat;
-import static tests.accounts.TestBase.app;
 
 public class EditAccountInfoDefinitions extends DefinitionsBase {
     private World world;

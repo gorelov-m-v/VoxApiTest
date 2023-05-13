@@ -6,7 +6,7 @@ import io.restassured.config.HttpClientConfig;
 import io.restassured.config.RestAssuredConfig;
 import org.apache.http.params.CoreConnectionPNames;
 import static io.restassured.RestAssured.given;
-import static tests.accounts.TestBase.app;
+import static model.cucumber.definitions.DefinitionsBase.app;
 
 public class ReceivedSMSRequest {
 

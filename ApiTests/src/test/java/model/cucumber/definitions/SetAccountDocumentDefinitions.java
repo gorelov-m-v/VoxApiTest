@@ -6,7 +6,6 @@ import io.cucumber.java.en.When;
 import model.http.accounts.setdocument.AccountDocumentDataSet;
 import java.io.IOException;
 import java.time.LocalDate;
-import static tests.accounts.TestBase.app;
 
 public class SetAccountDocumentDefinitions  extends DefinitionsBase {
     private World world;
