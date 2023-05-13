@@ -39,7 +39,8 @@ public class SendSmsMessageDefinitions extends DefinitionsBase {
     public void sendSmsInfoOkImitation() throws InterruptedException, IOException, TimeoutException {
         world.smsHistory = app.db().getSms(world.sendSmsMessageResponse);
 
-        String message = app.generate().randomSmsSendingInfoMQDataSet(world.smsHistory);
+        String message = app.generate().randomSmsSendingInfoMQDataSet2(world.smsHistory);
+        System.out.println(message);
 
         app.mqp().publish(app.getProperty("rabbitmq.exchange.sms"),
                 app.getProperty("rabbitmq.routing-key.smsSendingInfo"),
