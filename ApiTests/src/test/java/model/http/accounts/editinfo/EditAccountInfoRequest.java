@@ -1,7 +1,6 @@
 package model.http.accounts.editinfo;
 
 import model.constants.Paths;
-//import model.constants.Paths;
 import model.http.accounts.add.AddAccountResponse;
 import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
@@ -11,8 +10,6 @@ import static io.restassured.RestAssured.given;
 import static model.cucumber.definitions.DefinitionsBase.app;
 
 public class EditAccountInfoRequest {
-
-//    Paths paths = new Paths();
 
     RestAssuredConfig config = RestAssured.config()
             .httpClient(HttpClientConfig.httpClientConfig()

@@ -2,7 +2,6 @@ package model.http.universal;
 
 import model.http.universal.dataset.Error;
 import model.http.universal.dataset.Errors;
-
 import java.util.List;
 
 // https://voximplant.com/docs/references/httpapi/sms#controlsms

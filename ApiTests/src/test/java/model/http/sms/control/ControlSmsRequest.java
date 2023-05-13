@@ -1,7 +1,6 @@
 package model.http.sms.control;
 
 import model.constants.Paths;
-//import model.constants.Paths;
 import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
 import io.restassured.config.RestAssuredConfig;
@@ -11,7 +10,6 @@ import static io.restassured.RestAssured.given;
 import static model.cucumber.definitions.DefinitionsBase.app;
 
 public class ControlSmsRequest {
-//    Paths paths = new Paths();
 
     RestAssuredConfig config = RestAssured.config()
             .httpClient(HttpClientConfig.httpClientConfig()
