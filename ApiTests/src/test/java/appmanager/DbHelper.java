@@ -59,7 +59,7 @@ public class DbHelper extends HelperBase {
     }
 
     public SmsHistory getSms(SendSmsMessageResponse sendSmsMessageResponse) throws InterruptedException {
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(5);
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 

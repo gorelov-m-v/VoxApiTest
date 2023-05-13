@@ -1,13 +1,12 @@
 package model.http.sms.received;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class ReceivedSmsMQDataSet {
 
     private String source_number;
     private String destination_number;
-    private List<String> uuid;
+    private String uuid;
     private String message;
     private int fragments_count;
     private String received_date;
@@ -18,7 +17,7 @@ public class ReceivedSmsMQDataSet {
     public String getDestinationNumber() {
         return destination_number;
     }
-    public List<String> getUuid() {
+    public String getUuid() {
         return uuid;
     }
     public String getMessage() {
@@ -39,7 +38,7 @@ public class ReceivedSmsMQDataSet {
         this.destination_number = destination_number;
         return this;
     }
-    public ReceivedSmsMQDataSet withUuid(List<String> uuid) {
+    public ReceivedSmsMQDataSet withUuid(String uuid) {
         this.uuid = uuid;
         return this;
     }

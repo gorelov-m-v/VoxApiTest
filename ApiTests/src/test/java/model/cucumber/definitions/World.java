@@ -1,6 +1,5 @@
 package model.cucumber.definitions;
 
-import model.database.DeferredTransactions;
 import model.database.SmsHistory;
 import model.http.accounts.add.AddAccountDataSet;
 import model.http.accounts.add.AddAccountResponse;
@@ -10,6 +9,7 @@ import model.http.accounts.setdocument.SetAccountDocumentResponse;
 import model.http.phonenumbers.attach.AttachPhoneNumberDataSet;
 import model.http.phonenumbers.attach.AttachPhoneNumberResponse;
 import model.http.sms.control.ControlSmsDataSet;
+import model.http.sms.received.ReceivedSmsMQDataSet;
 import model.http.sms.send.SendSmsMessageDataSet;
 import model.http.sms.send.SendSmsMessageResponse;
 import model.http.sms.send.SmsSendingInfoDataSet;
@@ -33,6 +33,6 @@ public class World {
     SendSmsMessageDataSet sendSmsMessageDataSet;
     SendSmsMessageResponse sendSmsMessageResponse;
     SmsHistory smsHistory;
-    DeferredTransactions deferredTransactions;
     SmsSendingInfoDataSet smsSendingInfoDataSet;
+    ReceivedSmsMQDataSet receivedSmsMQDataSet;
 }

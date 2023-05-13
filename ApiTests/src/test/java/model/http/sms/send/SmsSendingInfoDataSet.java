@@ -1,8 +1,10 @@
 package model.http.sms.send;
 
+import java.util.List;
+
 public class SmsSendingInfoDataSet {
     private String message;
-    private String transaction_id;
+    private List<String> transaction_id;
     private String uuid;
     private int fragments_count;
     private int code;
@@ -10,7 +12,7 @@ public class SmsSendingInfoDataSet {
     public String getMessage() {
         return message;
     }
-    public String getTransactionId() {
+    public List<String> getTransactionId() {
         return transaction_id;
     }
     public String getUuid() {
@@ -27,7 +29,7 @@ public class SmsSendingInfoDataSet {
         this.message = message;
         return this;
     }
-    public SmsSendingInfoDataSet withTransaction_id(String transaction_id) {
+    public SmsSendingInfoDataSet withTransaction_id(List<String> transaction_id) {
         this.transaction_id = transaction_id;
         return this;
     }
