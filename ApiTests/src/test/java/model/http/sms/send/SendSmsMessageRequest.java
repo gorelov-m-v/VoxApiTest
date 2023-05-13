@@ -1,15 +1,16 @@
 package model.http.sms.send;
 
-import model.constants.Paths;
+//import model.constants.Paths;
 import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
 import io.restassured.config.RestAssuredConfig;
+import model.constants.Paths;
 import org.apache.http.params.CoreConnectionPNames;
 import static io.restassured.RestAssured.given;
 import static model.cucumber.definitions.DefinitionsBase.app;
 
 public class SendSmsMessageRequest {
-    Paths paths = new Paths();
+//    Paths paths = new Paths();
 
     RestAssuredConfig config = RestAssured.config()
             .httpClient(HttpClientConfig.httpClientConfig()
@@ -32,7 +33,7 @@ public class SendSmsMessageRequest {
                 .when()
                 .log()
                 .all()
-                .get(paths.sendSmsMessage)
+                .get(Paths.SEND_SMS_MESSAGE.toString())
                 .then()
                 .log()
                 .all()

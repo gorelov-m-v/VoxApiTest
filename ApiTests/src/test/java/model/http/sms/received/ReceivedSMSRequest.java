@@ -1,6 +1,7 @@
 package model.http.sms.received;
 
 import model.constants.Paths;
+//import model.constants.Paths;
 import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
 import io.restassured.config.RestAssuredConfig;
@@ -10,7 +11,7 @@ import static model.cucumber.definitions.DefinitionsBase.app;
 
 public class ReceivedSMSRequest {
 
-    Paths paths = new Paths();
+//    Paths paths = new Paths();
 
     RestAssuredConfig config = RestAssured.config()
             .httpClient(HttpClientConfig.httpClientConfig()
@@ -28,7 +29,7 @@ public class ReceivedSMSRequest {
                 .when()
                 .log()
                 .all()
-                .post(paths.receivedSms)
+                .post(Paths.RECEIVED_SMS.toString())
                 .then()
                 .log()
                 .all();

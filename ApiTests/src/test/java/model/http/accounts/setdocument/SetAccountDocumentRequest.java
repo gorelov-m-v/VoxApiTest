@@ -1,6 +1,7 @@
 package model.http.accounts.setdocument;
 
 import model.constants.Paths;
+//import model.constants.Paths;
 import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
 import io.restassured.config.RestAssuredConfig;
@@ -10,7 +11,7 @@ import static model.cucumber.definitions.DefinitionsBase.app;
 
 public class SetAccountDocumentRequest {
 
-    Paths paths = new Paths();
+//    Paths paths = new Paths();
 
     RestAssuredConfig config = RestAssured.config()
             .httpClient(HttpClientConfig.httpClientConfig()
@@ -42,7 +43,7 @@ public class SetAccountDocumentRequest {
                 .when()
                 .log()
                 .all()
-                .get(paths.setAccountDocument)
+                .get(Paths.SET_ACCOUNT_DOCUMENT.toString())
                 .then()
                 .log()
                 .all()

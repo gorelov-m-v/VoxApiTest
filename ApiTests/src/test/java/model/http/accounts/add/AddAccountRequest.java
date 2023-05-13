@@ -1,6 +1,7 @@
 package model.http.accounts.add;
 
 import model.constants.Paths;
+//import model.constants.Paths;
 import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
 import io.restassured.config.RestAssuredConfig;
@@ -10,7 +11,7 @@ import static model.cucumber.definitions.DefinitionsBase.app;
 
 // VoxDocs  https://voximplant.com/docs/references/httpapi/accounts#addaccount
 public class AddAccountRequest {
-    Paths paths = new Paths();
+//    Paths paths = new Paths();
 
     RestAssuredConfig config = RestAssured.config()
             .httpClient(HttpClientConfig.httpClientConfig()
@@ -52,7 +53,7 @@ public class AddAccountRequest {
                     .when()
                     .log()
                     .all()
-                    .get(paths.addAccount)
+                    .get(Paths.ADD_ACCOUNT.toString())
                     .then()
                     .log()
                     .all()
