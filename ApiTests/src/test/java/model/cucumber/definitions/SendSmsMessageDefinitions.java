@@ -76,9 +76,16 @@ public class SendSmsMessageDefinitions extends DefinitionsBase {
                 message);
     }
 
-    @Then("Проверка наличия реальной транзакции, созданной после доставки SMS")
-    public void checkRealTransactionInSmsHistory() throws InterruptedException {
-        assertThat(app.db().getSms(world.sendSmsMessageResponse).gettransaction_id()).isNotNull();
+    @Then("Проверка наличия реальной транзакции {string}, созданной после доставки SMS")
+    public void checkRealTransactionInSmsHistory(String expectedResult) throws InterruptedException {
+        String actualResult;
+        Integer transaction_id = app.db().getSms(world.sendSmsMessageResponse).gettransaction_id();
+        if (transaction_id != null) {
+            actualResult = "1";
+        } else {
+            actualResult = "0";
+        }
+        assertThat(actualResult).isEqualTo(expectedResult);
     }
 
     @Then("Проверка наличия SMS в таблице sms_history")
