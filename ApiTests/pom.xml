@@ -89,5 +89,10 @@
             <artifactId>json</artifactId>
             <version>20230227</version>
         </dependency>
+        <dependency>
+            <groupId>com.typesafe</groupId>
+            <artifactId>config</artifactId>
+            <version>1.4.2</version>
+        </dependency>
     </dependencies>
 </project>
