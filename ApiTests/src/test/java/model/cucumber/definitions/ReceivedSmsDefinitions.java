@@ -1,16 +1,15 @@
 package model.cucumber.definitions;
 
 import io.cucumber.java.Before;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import model.http.sms.received.ReceivedSmsMQDataSet;
-
+import model.http.sms.received.ReceiverSmsHTTPDataSet;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.UUID;
-import java.util.concurrent.TimeoutException;
-import static model.cucumber.definitions.DefinitionsBase.app;
 
-public class ReceivedSmsDefinitions {
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
+public class ReceivedSmsDefinitions extends DefinitionsBase{
 
     private World world;
     public ReceivedSmsDefinitions(World world) {
@@ -22,24 +21,25 @@ public class ReceivedSmsDefinitions {
         app.init();
     }
 
-    @When("Имитирована доставка SMS сообщением в очередь")
-    public void sendReceivedRabbitImitation() throws InterruptedException, IOException, TimeoutException {
+    @Given("Созданы данные для имитации получения SMS")
+    public void createReceiveSmsDataSet() {
+        world.receivedSmsHTTPDataSet = new ReceiverSmsHTTPDataSet()
+                .withSrcNumber(app.generate().randomString(11))
+                .withDstNumber(world.attachPhoneNumberResponse.getPhone_numbers().get(0).getPhone_number())
+                .withContent(app.generate().randomString(15));
+        System.out.println(world.attachPhoneNumberResponse.getPhone_numbers().get(0).getPhone_number());
 
-        world.receivedSmsMQDataSet = new ReceivedSmsMQDataSet()
-                .withSourceNumber(app.generate().randomString(11))
-                .withDestinationNumber(world.attachPhoneNumberResponse.getPhone_numbers().get(0).getPhone_number())
-                .withUuid(UUID.randomUUID().toString())
-                .withMessage(app.generate().randomString(20))
-                .withFragmentsCount(1)
-                .withReceivedDate(LocalDate.now().toString());
+    }
+    @When("Отправлен http запрос к Sms_gw, для имитации получения смс")
+    public void sendReceiveSmsRequest() {
+        receivedSMSRequest.receivedSms(world.receivedSmsHTTPDataSet);
+    }
 
+    @Then("Проверка наличия SMS у купленного номера в таблице sms_history")
+    public void checkSmsInSmsHistoryTable() throws InterruptedException {
+        world.smsHistory = app.db().getSmsByDestNumber(world.attachPhoneNumberResponse);
 
-        String message = app.generate().generateJsonFromObject(world.smsSendingInfoDataSet);
-        System.out.println(message);
-
-        app.mqp().publish(app.getProperty("rabbitmq.exchange.sms"),
-                app.getProperty("rabbitmq.routing-key.receiveSms"),
-                message);
+        assertThat(world.smsHistory).isNotNull();
     }
 
 }

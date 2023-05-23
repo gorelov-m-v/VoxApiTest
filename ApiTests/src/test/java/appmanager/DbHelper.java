@@ -6,6 +6,7 @@ import model.database.SmsHistory;
 import model.database.Users;
 import model.http.accounts.add.AddAccountDataSet;
 import model.http.accounts.add.AddAccountResponse;
+import model.http.phonenumbers.attach.AttachPhoneNumberResponse;
 import model.http.sms.received.ReceivedSmsMQDataSet;
 import model.http.sms.send.SendSmsMessageResponse;
 import org.hibernate.Session;
@@ -65,6 +66,20 @@ public class DbHelper extends HelperBase {
 
        SmsHistory result = session.createQuery(String.format("from model.database.SmsHistory where id = '%s'",
                 sendSmsMessageResponse.getMessageId()), SmsHistory.class).uniqueResult();
+
+        session.getTransaction().commit();
+        session.close();
+
+        return result;
+    }
+
+    public SmsHistory getSmsByDestNumber(AttachPhoneNumberResponse attachPhoneNumberResponse) throws InterruptedException {
+        TimeUnit.SECONDS.sleep(5);
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        SmsHistory result = session.createQuery(String.format("from model.database.SmsHistory where destination_number = '%s'",
+                attachPhoneNumberResponse.getPhone_numbers().get(0).getPhone_number()), SmsHistory.class).uniqueResult();
 
         session.getTransaction().commit();
         session.close();

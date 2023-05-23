@@ -6,6 +6,7 @@ import model.http.accounts.editinfo.EditAccountInfoRequest;
 import model.http.accounts.setdocument.SetAccountDocumentRequest;
 import model.http.phonenumbers.attach.AttachPhoneNumberRequest;
 import model.http.sms.control.ControlSmsRequest;
+import model.http.sms.received.ReceivedSMSRequest;
 import model.http.sms.send.SendSmsMessageRequest;
 
 public class DefinitionsBase {
@@ -16,4 +17,5 @@ public class DefinitionsBase {
     AttachPhoneNumberRequest attachPhoneNumberRequest = new AttachPhoneNumberRequest();
     ControlSmsRequest controlSmsRequest = new ControlSmsRequest();
     SendSmsMessageRequest sendSmsMessageRequest = new SendSmsMessageRequest();
+    ReceivedSMSRequest receivedSMSRequest = new ReceivedSMSRequest();
 }
